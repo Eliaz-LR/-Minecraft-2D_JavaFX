@@ -9,6 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import futuremctests.drawGrid;
 
 public class tests extends Application {
 
@@ -35,13 +36,16 @@ public class tests extends Application {
 
         gc.setFill(Color.LIGHTBLUE);
 
+        drawGrid grid = new drawGrid();
+        grid.drawGrid(canvas,canvas.getWidth(),canvas.getHeight(),50);
+
         final long startNanoTime = System.nanoTime();
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
                 double t = (currentNanoTime - startNanoTime) / 1000000005.0;
                 double x = Math.sin(t) * 200 + 400;
                 double y = Math.cos(t) * 200 + 300;
-                gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                //gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
                 gc.drawImage(image, x, y);
             }
         }.start();

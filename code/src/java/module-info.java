@@ -1,4 +1,4 @@
-module com.futuremctests {
+module futuremctests {
     requires javafx.controls;
     requires javafx.fxml;
 
