@@ -45,7 +45,8 @@ public class tests extends Application {
                 double t = (currentNanoTime - startNanoTime) / 1000000005.0;
                 double x = Math.sin(t) * 200 + 400;
                 double y = Math.cos(t) * 200 + 300;
-                //gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                grid.drawGrid(canvas,canvas.getWidth(),canvas.getHeight(),20);
                 gc.drawImage(image, x, y);
             }
         }.start();
