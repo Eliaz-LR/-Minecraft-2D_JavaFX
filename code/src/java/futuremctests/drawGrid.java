@@ -11,4 +11,7 @@ public class drawGrid {
             canvas.getGraphicsContext2D().strokeLine(0, i, width, i);
         }
     }
+    public void drawMonde(Canvas canvas, double width, double height, int cellSize) {
+        drawGrid(canvas, width, height, cellSize);
+    }
 }
