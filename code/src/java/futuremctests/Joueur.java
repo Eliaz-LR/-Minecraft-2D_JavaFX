@@ -1,7 +1,7 @@
 package futuremctests;
 
 public class Joueur {
-    public long x;
-    public long y;
+    public float x;
+    public float y;
 
 }
