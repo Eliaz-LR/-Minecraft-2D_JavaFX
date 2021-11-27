@@ -1,4 +1,4 @@
-package futuremctests;
+package model;
 
 public class Camera {
     public float camX;
@@ -13,6 +13,7 @@ public class Camera {
     }
 
     public void update() {
+        //la caméra suit le joueur
         this.camX = this.joueur.x;
         this.camY = this.joueur.y;
     }
