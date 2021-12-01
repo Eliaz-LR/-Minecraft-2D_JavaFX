@@ -70,10 +70,5 @@ public class Launch extends Application {
 
         primaryStage.show();
     }
-    public Coordonnees positionToCanvas(double xToConvert, double yToConvert, double xJoueur, double yJoueur, Canvas canvas){
-        Coordonnees coo = new Coordonnees();
-        coo.x = xToConvert - xJoueur + canvas.getWidth()/2;
-        coo.y = yToConvert - yJoueur + canvas.getHeight()/2;
-        return coo;
-    }
+
 }
