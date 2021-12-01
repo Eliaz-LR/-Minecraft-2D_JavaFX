@@ -14,6 +14,4 @@ public class drawGrid {
     public void drawMonde(Canvas canvas, double width, double height, int cellSize) {
         drawGrid(canvas, width, height, cellSize);
     }
-
-    public void drawPlayer(Canvas canvas, double width, double heigt)
 }
