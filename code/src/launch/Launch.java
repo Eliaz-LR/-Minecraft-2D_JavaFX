@@ -41,6 +41,8 @@ public class Launch extends Application {
 
 
 
+
+
         Image image = new Image("/images/Stone_(texture).png");
         double widthSteve = 160/2;
         double heightSteve = 360/2;
