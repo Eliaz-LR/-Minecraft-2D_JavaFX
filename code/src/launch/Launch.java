@@ -40,9 +40,6 @@ public class Launch extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
 
-
-
-
         Image image = new Image("/images/Stone_(texture).png");
         double widthSteve = 160/2;
         double heightSteve = 360/2;
@@ -64,7 +61,7 @@ public class Launch extends Application {
                 System.out.println(joueur.x+" "+joueur.y);
                 gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-                grid.drawMonde(canvas, canvas.getWidth(), canvas.getHeight(), 30);
+                grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight(), 30);
                 gc.drawImage(joueur.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);
             }
         }.start();
