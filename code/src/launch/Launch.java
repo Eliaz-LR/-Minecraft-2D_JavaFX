@@ -18,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import model.Coordonnees;
+import view.PlayerView;
 
 public class Launch extends Application {
 
@@ -36,6 +37,8 @@ public class Launch extends Application {
         Canvas canvas = new Canvas(1000, 800);
         root.getChildren().add(canvas);
         Joueur joueur = new Joueur();
+        PlayerView plv = new PlayerView(joueur);
+        deplacerJoueur deplacerPlv = new deplacerJoueur(joueur, mainJeu, plv);
         deplacerJoueur deplacerJoueur = new deplacerJoueur(joueur, mainJeu);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
@@ -57,14 +60,14 @@ public class Launch extends Application {
             public void handle(long currentNanoTime) {
                 deplacerJoueur.deplacerJoueur();
                 System.out.println(deplacerJoueur.input); //affiche la touche dans le terminal
-                System.out.println(joueur.x+" "+joueur.y);
+
                 //converti et affiche les positions du joueur depuis le canvas vers le monde, marche pas comme elle devrait (peut etre le signe d'un probleme ailleur en vrai)
                 Coordonnees coo_joueur_dans_monde = coo.CanvasToPosition(joueur.x,joueur.y, joueur.x, joueur.y,canvas);
                 System.out.println((coo_joueur_dans_monde.x-grid.cellSize)+" "+(coo_joueur_dans_monde.y-grid.cellSize));
                 gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
                 grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight(), 30);
                 gc.drawImage(joueur.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);
+                //gc.drawImage(plv.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);
             }
         }.start();
 
