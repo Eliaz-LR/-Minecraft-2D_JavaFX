@@ -42,11 +42,9 @@ public class deplacerJoueur {
     public void deplacerJoueur(){
         if(input.contains("LEFT")){
             joueur.x -= 5;
-            System.out.println(joueur.x);
         }
         if(input.contains("RIGHT")){
             joueur.x += 5;
-            System.out.println(joueur.x);
         }
         if(input.contains("UP")){
             joueur.y -= 5;

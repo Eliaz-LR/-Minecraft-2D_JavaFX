@@ -61,6 +61,7 @@ public class Launch extends Application {
             public void handle(long currentNanoTime) {
                 deplacerJoueur.deplacerJoueur();
                 System.out.println(deplacerJoueur.input); //affiche la touche dans le terminal
+                System.out.println(joueur.x+" "+joueur.y);
                 gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
                 grid.drawMonde(canvas, canvas.getWidth(), canvas.getHeight(), 30);
