@@ -43,7 +43,6 @@ public class Launch extends Application {
         Image image = new Image("/images/Stone_(texture).png");
         double widthSteve = 160/2;
         double heightSteve = 360/2;
-        Image player = new Image("/images/steve.png", widthSteve, heightSteve, true, true);
 
 
         gc.setFill(Color.LIGHTBLUE);
@@ -59,6 +58,9 @@ public class Launch extends Application {
                 deplacerJoueur.deplacerJoueur();
                 System.out.println(deplacerJoueur.input); //affiche la touche dans le terminal
                 System.out.println(joueur.x+" "+joueur.y);
+                //converti et affiche les positions du joueur depuis le canvas vers le monde, marche pas comme elle devrait (peut etre le signe d'un probleme ailleur en vrai)
+                Coordonnees coo_joueur_dans_monde = coo.CanvasToPosition(joueur.x,joueur.y, joueur.x, joueur.y,canvas);
+                System.out.println((coo_joueur_dans_monde.x-grid.cellSize)+" "+(coo_joueur_dans_monde.y-grid.cellSize));
                 gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
                 grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight(), 30);

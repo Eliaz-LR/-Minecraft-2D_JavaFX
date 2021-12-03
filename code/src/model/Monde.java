@@ -16,9 +16,11 @@ public class Monde {
                 type[x][y] = new Type(EnumType.Air);
             }
         }
-        // creation d'une couche de stone en y=0
+        // creation d'une couche de stone en y=le plus bas
         for (int x = 0; x < xMax; x++) {
-            type[x][0] = new Type(EnumType.Roche);
+            for (int y = yMax-1; y > yMax-10; y--) {
+                type[x][y] = new Type(EnumType.Roche);
+            }
         }
     }
     public Type getType(int x, int y){
