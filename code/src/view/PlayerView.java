@@ -18,6 +18,6 @@ public class PlayerView extends ImageView {
         y.bind(j.yP);
     }
     public void flip(){
-      this.setScaleX(-1);
+        this.setScaleX(-1);
     }
 }
