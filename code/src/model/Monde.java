@@ -22,6 +22,7 @@ public class Monde {
                 type[x][y] = new Type(EnumType.Roche);
             }
         }
+        type[0][0] = new Type(EnumType.Roche);
     }
     public Type getType(int x, int y){
         return type[x][y];
