@@ -25,10 +25,10 @@ public class drawGrid {
         for (int i = 0; i < monde.xMax; i++) {
             for (int j = 0; j < monde.yMax; j++) {
                 //converti la position des blocs dans le monde en position pour le canvas
-                canvasCoord = canvasCoord.positionToCanvas(i, j,joueur.x,joueur.y,canvas);
+                canvasCoord = canvasCoord.positionToCanvas(i, j,joueur.x,joueur.y,canvas,cellSize);
                 //si bloc de roche, on dessine la roche
                 if (monde.getType(i, j).getType() == EnumType.Roche) {
-                    canvas.getGraphicsContext2D().drawImage(stone, canvasCoord.x+i*(cellSize-1), canvasCoord.y+j*(cellSize-1));
+                    canvas.getGraphicsContext2D().drawImage(stone, canvasCoord.x, canvasCoord.y);
                 }
             }
         }

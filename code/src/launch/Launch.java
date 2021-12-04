@@ -61,8 +61,8 @@ public class Launch extends Application {
                 deplacerJoueur.deplacerJoueur();
                 System.out.println(deplacerJoueur.input); //affiche la touche dans le terminal
                 //converti et affiche les positions du joueur depuis le canvas vers le monde, marche pas comme elle devrait (peut etre le signe d'un probleme ailleur en vrai)
-                Coordonnees coo_joueur_dans_monde = coo.CanvasToPosition(joueur.x,joueur.y, joueur.x, joueur.y,canvas);
-                System.out.println((coo_joueur_dans_monde.x/grid.cellSize)+" "+(coo_joueur_dans_monde.y/grid.cellSize));
+                Coordonnees coo_joueur_dans_monde = coo.CanvasToPosition(joueur.x,joueur.y, joueur.x, joueur.y,canvas, grid.cellSize);
+                System.out.println((coo_joueur_dans_monde.x)+" "+(coo_joueur_dans_monde.y));
                 gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
                 grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight(), 30);
                 gc.drawImage(joueur.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);

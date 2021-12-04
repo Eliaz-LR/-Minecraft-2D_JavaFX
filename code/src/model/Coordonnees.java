@@ -10,17 +10,17 @@ public class Coordonnees {
         this.x = x;
         this.y = y;
     }
-    public Coordonnees positionToCanvas(double xToConvert, double yToConvert, double xJoueur, double yJoueur, Canvas canvas){
+    public Coordonnees positionToCanvas(double xOnMonde, double yOnMonde, double xJoueur, double yJoueur, Canvas canvas, int cellSize){
         Coordonnees coo = new Coordonnees();
-        coo.x = xToConvert - xJoueur + canvas.getWidth()/2;
-        coo.y = yToConvert - yJoueur + canvas.getHeight()/2;
+        coo.x = - xJoueur + canvas.getWidth()/2 + xOnMonde*cellSize;
+        coo.y = - yJoueur + canvas.getHeight()/2 + yOnMonde*cellSize;
         return coo;
     }
-    //positionToCanvas en inversé
-    public Coordonnees CanvasToPosition(double xToConvert, double yToConvert, double xJoueur, double yJoueur, Canvas canvas){
+    //positionToCanvas en inversé, ici xToConvert et yToConvert sont les coordonnées sur le canvas et coo.x et coo.y sont les coordonnées sur la map
+    public Coordonnees CanvasToPosition(double xOnCanvas, double yOnCanvas, double xJoueur, double yJoueur, Canvas canvas, int cellSize){
         Coordonnees coo = new Coordonnees();
-        coo.x = xToConvert + xJoueur - canvas.getWidth()/2;
-        coo.y = yToConvert + yJoueur - canvas.getHeight()/2;
+        coo.x = (xOnCanvas + xJoueur - canvas.getWidth()/2)/cellSize;
+        coo.y = (yOnCanvas + yJoueur - canvas.getHeight()/2)/cellSize;
         return coo;
     }
 

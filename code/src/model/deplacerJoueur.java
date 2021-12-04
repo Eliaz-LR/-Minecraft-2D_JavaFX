@@ -46,8 +46,8 @@ public class deplacerJoueur {
                         input.remove(code);
                     }
                 });
-        joueur.x = 100;
-        joueur.y = 100;
+        joueur.x = 0;
+        joueur.y = 0;
     }
     public void deplacerJoueur(){
         if(input.contains("LEFT")){
