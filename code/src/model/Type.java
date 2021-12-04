@@ -11,4 +11,8 @@ public class Type {
     EnumType getType(){
         return type;
     }
+
+    public String toString(){
+        return type.toString();
+    }
 }

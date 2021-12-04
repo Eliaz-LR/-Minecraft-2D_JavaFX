@@ -60,9 +60,12 @@ public class Launch extends Application {
             public void handle(long currentNanoTime) {
                 deplacerJoueur.deplacerJoueur();
                 System.out.println(deplacerJoueur.input); //affiche la touche dans le terminal
-                //converti et affiche les positions du joueur depuis le canvas vers le monde, marche pas comme elle devrait (peut etre le signe d'un probleme ailleur en vrai)
-                Coordonnees coo_joueur_dans_monde = coo.CanvasToPosition(canvas.getWidth()/2-widthSteve/2,canvas.getHeight()/2-heightSteve/2, joueur.x, joueur.y,canvas, grid.cellSize);
-                System.out.println((coo_joueur_dans_monde.x)+" "+(coo_joueur_dans_monde.y));
+                //converti et affiche les positions du joueur depuis le canvas vers le monde, les coordonées du joueur sont faites depuis son milieu.
+                Coordonnees coo_joueur_dans_monde = coo.CanvasToPosition(canvas.getWidth()/2,canvas.getHeight()/2, joueur.x, joueur.y,canvas, grid.cellSize);
+                System.out.println(coo_joueur_dans_monde.x+" "+coo_joueur_dans_monde.y+" id: "+grid.monde.getType((int)coo_joueur_dans_monde.x,(int)coo_joueur_dans_monde.y).toString());
+                if (deplacerJoueur.input.contains("SPACE")){
+                    grid.monde.setType((int)coo_joueur_dans_monde.x,(int)coo_joueur_dans_monde.y,new Type(EnumType.Air));
+                }
                 gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
                 grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight(), 30);
                 gc.drawImage(joueur.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);

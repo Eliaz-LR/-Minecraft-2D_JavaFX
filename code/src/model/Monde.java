@@ -27,4 +27,7 @@ public class Monde {
     public Type getType(int x, int y){
         return type[x][y];
     }
+    public void setType(int x, int y, Type t){
+        type[x][y] = t;
+    }
 }
