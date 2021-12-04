@@ -16,7 +16,7 @@ public class Coordonnees {
         coo.y = - yJoueur + canvas.getHeight()/2 + yOnMonde*cellSize;
         return coo;
     }
-    //positionToCanvas en inversé, ici xToConvert et yToConvert sont les coordonnées sur le canvas et coo.x et coo.y sont les coordonnées sur la map
+    //positionToCanvas en inversé, ici coo.x et coo.y sont les coordonnées sur la map
     public Coordonnees CanvasToPosition(double xOnCanvas, double yOnCanvas, double xJoueur, double yJoueur, Canvas canvas, int cellSize){
         Coordonnees coo = new Coordonnees();
         coo.x = (xOnCanvas + xJoueur - canvas.getWidth()/2)/cellSize;
