@@ -10,11 +10,24 @@ import javafx.scene.image.ImageView;
 import javafx.scene.transform.Rotate;
 
 public class Joueur {
-    //image de base
-    public Image img = new Image("/images/steve.png", 160/2, 360/2, true, true);
-    //image pour aller de chaque coté
-    public Image imgD = new Image("/images/steve-right.png", 160/2, 360/2, true, true);
-    public Image imgG = new Image("/images/steve.png", 160/2, 360/2, true, true);
+    public Image img;
+    public Image imgD;
+    public Image imgG;
+    public Joueur(){
+        //image de base
+        this.img = new Image("/images/steve.png", 160/2, 360/2, true, true);
+        //image pour aller de chaque coté
+        this.imgD = new Image("/images/steve-right.png", 160/2, 360/2, true, true);
+        this.imgG = new Image("/images/steve.png", 160/2, 360/2, true, true);
+    }
+    public Joueur(double width, double height){
+        //image de base
+        this.img = new Image("/images/steve.png", width, height, true, true);
+        //image pour aller de chaque coté
+        this.imgD = new Image("/images/steve-right.png", width, height, true, true);
+        this.imgG = new Image("/images/steve.png", width, height, true, true);
+    }
+
 
     //les coordonnées du joueur sont ici données en "unités" de canvas
     public double x;

@@ -36,7 +36,9 @@ public class Launch extends Application {
 
         Canvas canvas = new Canvas(1000, 800);
         root.getChildren().add(canvas);
-        Joueur joueur = new Joueur();
+        double widthSteve = 160/4;
+        double heightSteve = 360/4;
+        Joueur joueur = new Joueur(widthSteve, heightSteve);
         PlayerView plv = new PlayerView(joueur);
         deplacerJoueur deplacerPlv = new deplacerJoueur(joueur, mainJeu, plv);
         deplacerJoueur deplacerJoueur = new deplacerJoueur(joueur, mainJeu);
@@ -44,8 +46,7 @@ public class Launch extends Application {
 
 
         Image image = new Image("/images/Stone_(texture).png");
-        double widthSteve = 160/2;
-        double heightSteve = 360/2;
+
 
 
         gc.setFill(Color.LIGHTBLUE);
