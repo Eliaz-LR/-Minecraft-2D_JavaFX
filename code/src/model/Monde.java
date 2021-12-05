@@ -25,6 +25,9 @@ public class Monde {
         type[0][0] = new Type(EnumType.Roche);
     }
     public Type getType(int x, int y){
+        if (x<0 || x>=xMax || y<0 || y>=yMax){
+            return new Type(EnumType.Air);
+        }
         return type[x][y];
     }
     public void setType(int x, int y, Type t){
