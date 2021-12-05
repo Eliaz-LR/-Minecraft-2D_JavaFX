@@ -55,7 +55,7 @@ public class Launch extends Application {
 
         gc.setFill(Color.LIGHTBLUE);
         gc.setStroke(Color.DARKGRAY);
-        drawGrid grid = new drawGrid();
+        drawGrid grid = new drawGrid(blockSize);
         Coordonnees coo = new Coordonnees();
         coo.x = canvas.getWidth()/2;
         coo.y = canvas.getHeight()/2;
@@ -71,7 +71,7 @@ public class Launch extends Application {
                     grid.monde.setType((int)coo_joueur_dans_monde.x,(int)coo_joueur_dans_monde.y,new Type(EnumType.Air));
                 }
                 gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight(), blockSize);
+                grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight());
                 gc.drawImage(joueur.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);
                 //gc.drawImage(plv.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);
             }
