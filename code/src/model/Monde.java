@@ -31,6 +31,10 @@ public class Monde {
         return type[x][y];
     }
     public void setType(int x, int y, Type t){
+        if (x<0 || x>=xMax || y<0 || y>=yMax){
+            System.out.println("Erreur : coordonnées hors du monde");
+            return;
+        }
         type[x][y] = t;
     }
 }

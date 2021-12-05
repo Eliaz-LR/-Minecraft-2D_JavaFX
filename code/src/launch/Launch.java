@@ -36,11 +36,15 @@ public class Launch extends Application {
 
         Canvas canvas = new Canvas(1000, 800);
         root.getChildren().add(canvas);
-        double widthSteve = 160/4;
-        double heightSteve = 360/4;
+
+        double widthSteve = 40;
+        double heightSteve = 90;
         Joueur joueur = new Joueur(widthSteve, heightSteve);
+        int blockSize = 40;
+
         PlayerView plv = new PlayerView(joueur);
         deplacerJoueur deplacerPlv = new deplacerJoueur(joueur, mainJeu, plv);
+
         deplacerJoueur deplacerJoueur = new deplacerJoueur(joueur, mainJeu);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
@@ -52,7 +56,6 @@ public class Launch extends Application {
         gc.setFill(Color.LIGHTBLUE);
         gc.setStroke(Color.DARKGRAY);
         drawGrid grid = new drawGrid();
-        grid.drawGrid(canvas,canvas.getWidth(),canvas.getHeight(),10);
         Coordonnees coo = new Coordonnees();
         coo.x = canvas.getWidth()/2;
         coo.y = canvas.getHeight()/2;
@@ -68,7 +71,7 @@ public class Launch extends Application {
                     grid.monde.setType((int)coo_joueur_dans_monde.x,(int)coo_joueur_dans_monde.y,new Type(EnumType.Air));
                 }
                 gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight(), 30);
+                grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight(), blockSize);
                 gc.drawImage(joueur.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);
                 //gc.drawImage(plv.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);
             }
