@@ -28,7 +28,7 @@ public class drawGrid {
         }
     }
     public void drawMonde(Canvas canvas, Joueur joueur, double width, double height) {
-        Image stone = new Image("/images/Stone_(texture).png", cellSize, cellSize, false, false);
+        //Image stone = new Image("/images/Stone_(texture).png", cellSize, cellSize, false, false);
         Coordonnees canvasCoord = new Coordonnees();
 
         for (int i = 0; i < this.monde.xMax; i++) {
@@ -36,9 +36,8 @@ public class drawGrid {
                 //converti la position des blocs dans le monde en position pour le canvas
                 canvasCoord = canvasCoord.positionToCanvas(i, j,joueur.x,joueur.y,canvas,cellSize);
                 //si bloc de roche, on dessine la roche
-                if (this.monde.getType(i, j).getType() == EnumType.Roche) {
-
-                    canvas.getGraphicsContext2D().drawImage(stone, canvasCoord.x, canvasCoord.y);
+                if (this.monde.getType(i, j).getType() != EnumType.Air) {
+                    canvas.getGraphicsContext2D().drawImage(this.monde.getType(i, j).texture, canvasCoord.x, canvasCoord.y);
                 }
             }
         }

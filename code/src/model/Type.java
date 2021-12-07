@@ -8,19 +8,25 @@ public class Type {
     private int cellSize;
     public Type(EnumType type){
         this.type = type;
+        this.cellSize = 40;
+        setTextureSwitch(type);
     }
     public Type(EnumType type, int cellSize) {
         this.type = type;
         this.cellSize = cellSize;
+        setTextureSwitch(type);
+    }
+
+    private void setTextureSwitch(EnumType type){
         switch (type){
             case Roche:
                 this.texture = new Image("/images/Stone_(texture).png", cellSize, cellSize, false, false);
                 break;
             case Terre:
-                this.texture = new Image("/images/Dirt_(texture).png", cellSize, cellSize, false, false);
+                this.texture = new Image("/images/Dirt_(texture).jpg", cellSize, cellSize, false, false);
                 break;
             case Herbe:
-                this.texture = new Image("/images/Grass_(texture).png", cellSize, cellSize, false, false);
+                this.texture = new Image("/images/Grass_(texture).jpg", cellSize, cellSize, false, false);
                 break;
             default:
                 break;

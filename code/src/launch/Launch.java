@@ -28,7 +28,7 @@ public class Launch extends Application {
 
     @Override
     public void start(Stage primaryStage) throws FileNotFoundException {
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Minecraft 2D");
 
         Group root = new Group();
         Scene mainJeu = new Scene(root);
@@ -42,15 +42,11 @@ public class Launch extends Application {
         Joueur joueur = new Joueur(widthSteve, heightSteve);
         int blockSize = 40;
 
-        PlayerView plv = new PlayerView(joueur);
-        deplacerJoueur deplacerPlv = new deplacerJoueur(joueur, mainJeu, plv);
+        //PlayerView plv = new PlayerView(joueur);
+        //deplacerJoueur deplacerPlv = new deplacerJoueur(joueur, mainJeu, plv);
 
         deplacerJoueur deplacerJoueur = new deplacerJoueur(joueur, mainJeu);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-
-
-        Image image = new Image("/images/Stone_(texture).png");
-
 
 
         gc.setFill(Color.LIGHTBLUE);

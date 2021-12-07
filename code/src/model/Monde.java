@@ -22,6 +22,18 @@ public class Monde {
                 type[x][y] = new Type(EnumType.Roche);
             }
         }
+        // creation d'une couche de dirt au dessus de la roche
+        for (int x = 0; x < xMax; x++) {
+            for (int y = yMax-10; y > yMax-15; y--) {
+                type[x][y] = new Type(EnumType.Terre);
+            }
+        }
+        // creation d'une couche de grass au dessus de la terre
+        for (int x = 0; x < xMax; x++) {
+            for (int y = yMax-15; y > yMax-16; y--) {
+                type[x][y] = new Type(EnumType.Herbe);
+            }
+        }
         type[0][0] = new Type(EnumType.Roche);
     }
     public Type getType(int x, int y){
