@@ -58,11 +58,18 @@ public class Launch extends Application {
         final long startNanoTime = System.nanoTime();
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
-                deplacerJoueur.deplacerJoueur();
+
                 System.out.println(deplacerJoueur.input); //affiche la touche dans le terminal
                 //converti et affiche les positions du joueur depuis le canvas vers le monde, les coordonées du joueur sont faites depuis son milieu.
                 Coordonnees coo_joueur_dans_monde = coo.CanvasToPosition(canvas.getWidth()/2,canvas.getHeight()/2, joueur.x, joueur.y,canvas, grid.cellSize);
                 System.out.println(coo_joueur_dans_monde.x+" "+coo_joueur_dans_monde.y+" id: "+grid.monde.getType((int)coo_joueur_dans_monde.x,(int)coo_joueur_dans_monde.y).toString());
+                if (grid.monde.getType((int)coo_joueur_dans_monde.x,1+(int)coo_joueur_dans_monde.y).toString().equals("Air")){
+                    deplacerJoueur.IsBlockDownEmpty = true;
+                }
+                else {
+                    deplacerJoueur.IsBlockDownEmpty = false;
+                }
+                deplacerJoueur.deplacerJoueur();
                 if (deplacerJoueur.input.contains("SPACE")){
                     grid.monde.setType((int)coo_joueur_dans_monde.x,(int)coo_joueur_dans_monde.y,new Type(EnumType.Air));
                 }

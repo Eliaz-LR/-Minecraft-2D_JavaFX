@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class deplacerJoueur {
     private Joueur joueur;
     private PlayerView playerView;
+    public Boolean IsBlockDownEmpty;
     Scene mainJeu;
     public ArrayList<String> input;
     public deplacerJoueur(Joueur joueur, Scene mainJeu){
@@ -46,26 +47,46 @@ public class deplacerJoueur {
                         input.remove(code);
                     }
                 });
-        joueur.x = 0;
+        joueur.x = 250;
         joueur.y = 0;
     }
     public void deplacerJoueur(){
         if(input.contains("LEFT")){
-            joueur.x -= 5;
+            if (joueur.Xspeed > -10){
+                joueur.Xspeed -= 1;
+            }
             joueur.img = joueur.imgG;
         }
-        if(input.contains("RIGHT")){
-            joueur.x += 5;
+        else if(input.contains("RIGHT")){
+            if (joueur.Xspeed < 10) {
+                joueur.Xspeed += 1;
+            }
             joueur.img = joueur.imgD;
         }
+        else{
+            joueur.Xspeed = 0;
+        }
         if(input.contains("UP")){
-            joueur.y -= 5;
+            if(!IsBlockDownEmpty){
+                joueur.Yspeed = -20;
+            }
         }
-        if(input.contains("DOWN")){
-            joueur.y += 5;
-        }
+        Gravity();
+        checkCollisions();
+        joueur.x = joueur.x + joueur.Xspeed;
+        joueur.y = joueur.y + joueur.Yspeed;
     }
 
-
-
+    private void checkCollisions(){
+        if(!IsBlockDownEmpty){
+            if (joueur.Yspeed > 0){
+                joueur.Yspeed = 0;
+            }
+        }
+    }
+    private void Gravity(){
+        if(joueur.Yspeed < 15){
+            joueur.Yspeed += 1;
+        }
+    }
 }

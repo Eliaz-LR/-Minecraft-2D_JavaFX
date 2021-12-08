@@ -13,6 +13,16 @@ public class Joueur {
     public Image img;
     public Image imgD;
     public Image imgG;
+
+    //les coordonnées du joueur sont ici données en "unités" de canvas
+    public double x;
+    public double y;
+    public double Xspeed;
+    public double Yspeed;
+
+    public DoubleProperty xP = new SimpleDoubleProperty(x);
+    public DoubleProperty yP = new SimpleDoubleProperty(y);
+
     public Joueur(){
         //image de base
         this.img = new Image("/images/steve.png", 160/2, 360/2, true, true);
@@ -27,14 +37,6 @@ public class Joueur {
         this.imgD = new Image("/images/steve-right.png", width, height, true, true);
         this.imgG = new Image("/images/steve.png", width, height, true, true);
     }
-
-
-    //les coordonnées du joueur sont ici données en "unités" de canvas
-    public double x;
-    public float y;
-
-    public DoubleProperty xP = new SimpleDoubleProperty(x);
-    public DoubleProperty yP = new SimpleDoubleProperty(y);
 
 
 
