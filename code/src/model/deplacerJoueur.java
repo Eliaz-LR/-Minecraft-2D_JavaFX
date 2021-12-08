@@ -66,9 +66,9 @@ public class deplacerJoueur {
         else{
             joueur.Xspeed = 0;
         }
-        if(input.contains("UP")){
+        if(input.contains("SPACE")){
             if(!IsBlockDownEmpty){
-                joueur.Yspeed = -20;
+                joueur.Yspeed = -15;
             }
         }
         Gravity();
