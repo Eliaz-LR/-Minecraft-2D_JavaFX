@@ -28,6 +28,9 @@ public class Type {
             case Herbe:
                 this.texture = new Image("/images/Grass_(texture).jpg", cellSize, cellSize, false, false);
                 break;
+            case Bedrock:
+                this.texture = new Image("/images/Bedrock_(texture).png", cellSize, cellSize, false, false);
+                break;
             default:
                 break;
         }
