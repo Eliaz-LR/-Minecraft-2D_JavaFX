@@ -1,18 +1,18 @@
 package model;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
-import view.PlayerView;
 
 import java.util.ArrayList;
 
 public class deplacerJoueur {
     private Joueur joueur;
-    private PlayerView playerView;
+    public Boolean IsBlockUpEmpty;
     public Boolean IsBlockDownEmpty;
+    public Boolean IsBlockRightEmpty;
+    public Boolean IsBlockLeftEmpty;
+
     Scene mainJeu;
     public ArrayList<String> input;
     public deplacerJoueur(Joueur joueur, Scene mainJeu){
@@ -20,11 +20,6 @@ public class deplacerJoueur {
         this.mainJeu = mainJeu;
         input = new ArrayList<String>();
         init();
-    }
-
-    public deplacerJoueur(Joueur joueur, Scene mainJeu, PlayerView playerView){
-        super();
-        this.playerView = playerView;
     }
 
     private void init(){
@@ -56,19 +51,31 @@ public class deplacerJoueur {
                 joueur.Xspeed -= 1;
             }
             joueur.img = joueur.imgG;
+            if(IsBlockLeftEmpty){
+                if(joueur.Xspeed < -10){
+                    joueur.Xspeed +=1;
+                }
+            }
         }
         else if(input.contains("RIGHT")){
             if (joueur.Xspeed < 10) {
                 joueur.Xspeed += 1;
             }
             joueur.img = joueur.imgD;
+            if(IsBlockRightEmpty){
+                if (joueur.Xspeed < 10)
+                joueur.Xspeed +=1;
+            }
         }
         else{
             joueur.Xspeed = 0;
         }
-        if(input.contains("SPACE")){
+        if(input.contains("UP")){
             if(!IsBlockDownEmpty){
                 joueur.Yspeed = -15;
+            }
+            if(!IsBlockUpEmpty){
+                joueur.Yspeed = 0;
             }
         }
         Gravity();
@@ -81,6 +88,17 @@ public class deplacerJoueur {
         if(!IsBlockDownEmpty){
             if (joueur.Yspeed > 0){
                 joueur.Yspeed = 0;
+            }
+        }
+        if(!IsBlockRightEmpty){
+            if(joueur.Xspeed > 0){
+                joueur.Xspeed = 0;
+            }
+
+        }
+        if(!IsBlockLeftEmpty){
+            if(joueur.Xspeed < 0){
+                joueur.Xspeed = 0;
             }
         }
     }
