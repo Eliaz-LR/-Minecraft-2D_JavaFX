@@ -16,12 +16,21 @@ public class Monde {
                 type[x][y] = new Type(EnumType.Air);
             }
         }
+
+        //creation d'une couche de bedrock en y le plus bas
+        for(int x = 0; x < xMax ; x++ ){
+            for(int y = yMax-1; y > yMax-3; y-- ){
+                type[x][y] = new Type(EnumType.Bedrock);
+            }
+        }
+
         // creation d'une couche de stone en y=le plus bas
         for (int x = 0; x < xMax; x++) {
-            for (int y = yMax-1; y > yMax-10; y--) {
+            for (int y = yMax-3; y > yMax-10; y--) {
                 type[x][y] = new Type(EnumType.Roche);
             }
         }
+
         // creation d'une couche de dirt au dessus de la roche
         for (int x = 0; x < xMax; x++) {
             for (int y = yMax-10; y > yMax-15; y--) {
@@ -38,9 +47,17 @@ public class Monde {
     }
     public Type getType(int x, int y){
         if (x<0 || x>=xMax || y<0 || y>=yMax){
+            System.out.println("OUT OF BOUNDS\n");
             return new Type(EnumType.Air);
         }
         return type[x][y];
+    }
+
+    public Type getTypeMonde(double x, int y){
+        if (x<0 || x>=xMax || y<0 || y>=yMax){
+            return new Type(EnumType.Air);
+        }
+        return type[(int)x][(int)y];
     }
     public void setType(int x, int y, Type t){
         if (x<0 || x>=xMax || y<0 || y>=yMax){
