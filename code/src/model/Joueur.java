@@ -20,16 +20,6 @@ public class Joueur {
     public double Xspeed;
     public double Yspeed;
 
-    public DoubleProperty xP = new SimpleDoubleProperty(x);
-    public DoubleProperty yP = new SimpleDoubleProperty(y);
-
-    public Joueur(){
-        //image de base
-        this.img = new Image("/images/steve.png", 160/2, 360/2, true, true);
-        //image pour aller de chaque coté
-        this.imgD = new Image("/images/steve-right.png", 160/2, 360/2, true, true);
-        this.imgG = new Image("/images/steve.png", 160/2, 360/2, true, true);
-    }
     public Joueur(double width, double height){
         //image de base
         this.img = new Image("/images/steve.png", width, height, true, true);
