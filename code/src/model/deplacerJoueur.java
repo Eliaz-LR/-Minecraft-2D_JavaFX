@@ -46,7 +46,7 @@ public class deplacerJoueur {
         joueur.y = 0;
     }
     public void deplacerJoueur(){
-        if(input.contains("LEFT")){
+        if(input.contains("LEFT") || input.contains("Q")){
             if (joueur.Xspeed > -10){
                 joueur.Xspeed -= 1;
             }
@@ -57,7 +57,7 @@ public class deplacerJoueur {
                 }
             }
         }
-        else if(input.contains("RIGHT")){
+        else if(input.contains("RIGHT") || input.contains("D")){
             if (joueur.Xspeed < 10) {
                 joueur.Xspeed += 1;
             }
@@ -70,10 +70,11 @@ public class deplacerJoueur {
         else{
             joueur.Xspeed = 0;
         }
-        if(input.contains("UP")){
+        if(input.contains("UP") || input.contains("SPACE")){
             if(!IsBlockDownEmpty){
                 joueur.Yspeed = -15;
             }
+            //check que le bloc du dessus n'est pas plein pour pouvoir jump
             if(!IsBlockUpEmpty){
                 joueur.Yspeed = 0;
             }
