@@ -28,7 +28,6 @@ public class drawGrid {
         }
     }
     public void drawMonde(Canvas canvas, Joueur joueur, double width, double height) {
-        //Image stone = new Image("/images/Stone_(texture).png", cellSize, cellSize, false, false);
         Coordonnees canvasCoord = new Coordonnees();
 
         for (int i = 0; i < this.monde.xMax; i++) {
