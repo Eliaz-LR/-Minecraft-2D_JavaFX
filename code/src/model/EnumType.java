@@ -6,5 +6,7 @@ public enum EnumType {
     Terre,
     Herbe,
     Bedrock,
+    Tronc,
+    Feuilles,
     Erreur
 }
