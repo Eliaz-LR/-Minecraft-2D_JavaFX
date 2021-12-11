@@ -6,6 +6,7 @@ public class Monde {
     private Type[][] type;
     public int xMax;
     public int yMax;
+
     public Monde(int xMax, int yMax){
         this.xMax = xMax;
         this.yMax = yMax;
@@ -44,6 +45,7 @@ public class Monde {
             }
         }
         type[0][0] = new Type(EnumType.Roche);
+        drawArbre(4,4);
     }
     public Type getType(int x, int y){
         if (x<0 || x>=xMax || y<0 || y>=yMax){
@@ -53,17 +55,21 @@ public class Monde {
         return type[x][y];
     }
 
-    public Type getTypeMonde(double x, int y){
-        if (x<0 || x>=xMax || y<0 || y>=yMax){
-            return new Type(EnumType.Air);
-        }
-        return type[(int)x][(int)y];
-    }
     public void setType(int x, int y, Type t){
         if (x<0 || x>=xMax || y<0 || y>=yMax){
             System.out.println("Erreur : coordonnées hors du monde");
             return;
         }
         type[x][y] = t;
+    }
+
+    public void drawArbre(int x, int y){
+        type[x][y] = new Type(EnumType.Tronc);
+        type[x][y-1] = new Type(EnumType.Tronc);
+        type[x][y-2] = new Type(EnumType.Tronc);
+        type[x+1][y-3] = new Type(EnumType.Feuilles);
+        type[x][y-3] = new Type(EnumType.Feuilles);
+        type[x-1][y-3] = new Type(EnumType.Feuilles);
+        type[x][y-4] = new Type(EnumType.Feuilles);
     }
 }
