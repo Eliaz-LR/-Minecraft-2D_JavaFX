@@ -1,20 +1,12 @@
 package model;
 
 import javafx.scene.canvas.Canvas;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import model.Type;
-import model.EnumType;
-import model.Coordonnees;
 
-public class drawGrid {
+public class DrawGrid {
     public int cellSize;
     public Monde monde;
 
-    public drawGrid() {
-        this.monde = new Monde(50,20);
-    }
-    public drawGrid(int cellSize){
+    public DrawGrid(int cellSize){
         this.cellSize = cellSize;
         this.monde = new Monde(50,20);
     }
