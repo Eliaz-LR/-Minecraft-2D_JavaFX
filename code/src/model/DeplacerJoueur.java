@@ -6,16 +6,15 @@ import javafx.scene.input.KeyEvent;
 
 import java.util.ArrayList;
 
-public class deplacerJoueur {
+public class DeplacerJoueur {
     private Joueur joueur;
     public Boolean IsBlockUpEmpty;
     public Boolean IsBlockDownEmpty;
     public Boolean IsBlockRightEmpty;
     public Boolean IsBlockLeftEmpty;
-
     Scene mainJeu;
     public ArrayList<String> input;
-    public deplacerJoueur(Joueur joueur, Scene mainJeu){
+    public DeplacerJoueur(Joueur joueur, Scene mainJeu){
         this.joueur = joueur;
         this.mainJeu = mainJeu;
         input = new ArrayList<String>();
