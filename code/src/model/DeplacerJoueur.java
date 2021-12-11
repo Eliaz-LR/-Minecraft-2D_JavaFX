@@ -12,12 +12,14 @@ public class DeplacerJoueur {
     public Boolean IsBlockDownEmpty;
     public Boolean IsBlockRightEmpty;
     public Boolean IsBlockLeftEmpty;
+    public Gravity gravity;
     Scene mainJeu;
     public ArrayList<String> input;
     public DeplacerJoueur(Joueur joueur, Scene mainJeu){
         this.joueur = joueur;
         this.mainJeu = mainJeu;
         input = new ArrayList<String>();
+        gravity = new Gravity(joueur);
         init();
     }
 
@@ -78,7 +80,7 @@ public class DeplacerJoueur {
                 joueur.Yspeed = 0;
             }
         }
-        Gravity();
+        gravity.gravityPlayer();
         checkCollisions();
         joueur.x = joueur.x + joueur.Xspeed;
         joueur.y = joueur.y + joueur.Yspeed;
@@ -100,11 +102,6 @@ public class DeplacerJoueur {
             if(joueur.Xspeed < 0){
                 joueur.Xspeed = 0;
             }
-        }
-    }
-    private void Gravity(){
-        if(joueur.Yspeed < 15){
-            joueur.Yspeed += 1;
         }
     }
 }
