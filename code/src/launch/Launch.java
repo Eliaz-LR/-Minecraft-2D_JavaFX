@@ -35,7 +35,7 @@ public class Launch extends Application {
         double heightSteve = 90;
         int blockSize = 40;
         Joueur joueur = new Joueur(widthSteve, heightSteve);
-        deplacerJoueur deplacerJoueur = new deplacerJoueur(joueur, mainJeu);
+        DeplacerJoueur deplacerJoueur = new DeplacerJoueur(joueur, mainJeu);
 
         Mouse mouse = new Mouse(mainJeu);
         Coordonnees coo = new Coordonnees();
@@ -46,7 +46,7 @@ public class Launch extends Application {
         gc.setFill(Color.LIGHTBLUE);
         gc.setStroke(Color.DARKGRAY);
 
-        drawGrid grid = new drawGrid(blockSize);
+        DrawGrid grid = new DrawGrid(blockSize);
 
 
 
@@ -82,7 +82,7 @@ public class Launch extends Application {
 
     }
 
-    public void checkBlocks(drawGrid grid, deplacerJoueur deplacerJoueur, Coordonnees coo_joueur_dans_monde){
+    public void checkBlocks(DrawGrid grid, DeplacerJoueur deplacerJoueur, Coordonnees coo_joueur_dans_monde){
         //verification pour les blocs en DESSOUS
         if (grid.monde.getType((int)coo_joueur_dans_monde.x,1+(int)coo_joueur_dans_monde.y).toString().equals("Air")){
             deplacerJoueur.IsBlockDownEmpty = true;
