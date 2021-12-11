@@ -33,6 +33,7 @@ public class Launch extends Application {
 
         double widthSteve = 40;
         double heightSteve = 90;
+        double heightHitbox = heightSteve - 10;
         int blockSize = 40;
         Joueur joueur = new Joueur(widthSteve, heightSteve);
         deplacerJoueur deplacerJoueur = new deplacerJoueur(joueur, mainJeu);
@@ -44,7 +45,7 @@ public class Launch extends Application {
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.LIGHTBLUE);
-        gc.setStroke(Color.DARKGRAY);
+        gc.setStroke(Color.RED);
 
         drawGrid grid = new drawGrid(blockSize);
 
@@ -60,7 +61,7 @@ public class Launch extends Application {
                 //System.out.println(deplacerJoueur.input); //affiche la touche dans le terminal
                 //converti et affiche les positions du joueur depuis le canvas vers le monde, les coordonées du joueur sont faites depuis son milieu.
                 Coordonnees coo_joueur_dans_monde = coo.CanvasToPosition(canvas.getWidth()/2,canvas.getHeight()/2, joueur.x, joueur.y,canvas, grid.cellSize);
-                //System.out.println(coo_joueur_dans_monde.x+" "+coo_joueur_dans_monde.y+" id: "+grid.monde.getType((int)coo_joueur_dans_monde.x,(int)coo_joueur_dans_monde.y).toString());
+                System.out.println(coo_joueur_dans_monde.x+" "+coo_joueur_dans_monde.y+" id: "+grid.monde.getType((int)coo_joueur_dans_monde.x,(int)coo_joueur_dans_monde.y).toString());
 
 
                 checkBlocks(grid, deplacerJoueur, coo_joueur_dans_monde);
@@ -73,6 +74,7 @@ public class Launch extends Application {
                 gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
                 grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight());
                 gc.drawImage(joueur.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);
+                gc.strokeRect(canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightHitbox/2, widthSteve, heightHitbox);
             }
         }.start();
 
@@ -99,16 +101,16 @@ public class Launch extends Application {
             deplacerJoueur.IsBlockUpEmpty= false;
         }
 
-        //vérification pour les blocs à GAUCHE
-        if(grid.monde.getType((int)coo_joueur_dans_monde.x -1, (int)coo_joueur_dans_monde.y).toString().equals("Air")){
+        //vérification pour les blocs à GAUCHE (bloc du bas puis du haut)
+        if(grid.monde.getType((int)(coo_joueur_dans_monde.x-0.5), (int)coo_joueur_dans_monde.y).toString().equals("Air")&&grid.monde.getType((int)(coo_joueur_dans_monde.x-0.5), (int)coo_joueur_dans_monde.y-1).toString().equals("Air")){
             deplacerJoueur.IsBlockLeftEmpty = true;
         }
         else{
             deplacerJoueur.IsBlockLeftEmpty = false;
         }
 
-        //vérification pour les blocs a DROITE
-        if(grid.monde.getType((int)coo_joueur_dans_monde.x+1, (int)coo_joueur_dans_monde.y).toString().equals("Air")){
+        //vérification pour les blocs a DROITE (bloc du bas puis du haut)
+        if(grid.monde.getType((int)(coo_joueur_dans_monde.x+0.5), (int)coo_joueur_dans_monde.y).toString().equals("Air")&&grid.monde.getType((int)(coo_joueur_dans_monde.x+0.5), (int)(coo_joueur_dans_monde.y-1)).toString().equals("Air")){
             deplacerJoueur.IsBlockRightEmpty = true;
         }
         else{
