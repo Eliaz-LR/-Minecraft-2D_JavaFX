@@ -6,6 +6,7 @@ public class Type {
     public EnumType type;
     public Image texture;
     private int cellSize;
+
     public Type(EnumType type){
         this.type = type;
         this.cellSize = 40;
@@ -30,6 +31,12 @@ public class Type {
                 break;
             case Bedrock:
                 this.texture = new Image("/images/Bedrock_(texture).png", cellSize, cellSize, false, false);
+                break;
+            case Tronc:
+                this.texture = new Image("/images/Wood_(texture).jpeg", cellSize, cellSize, false, false);
+                break;
+            case Feuilles:
+                this.texture = new Image("/images/Leaves_(texture).png", cellSize, cellSize, false, false);
                 break;
             default:
                 break;
