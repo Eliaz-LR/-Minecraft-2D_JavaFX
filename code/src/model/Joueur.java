@@ -22,10 +22,10 @@ public class Joueur {
 
     public Joueur(double width, double height){
         //image de base
-        this.img = new Image("/images/steve.png", width, height, true, true);
+        this.img = new Image("/images/steve.png", width, height, false, true);
         //image pour aller de chaque coté
-        this.imgD = new Image("/images/steve-right.png", width, height, true, true);
-        this.imgG = new Image("/images/steve.png", width, height, true, true);
+        this.imgD = new Image("/images/steve-right.png", width, height, false, true);
+        this.imgG = new Image("/images/steve.png", width, height, false, true);
     }
 
 

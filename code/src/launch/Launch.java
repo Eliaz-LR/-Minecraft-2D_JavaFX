@@ -41,8 +41,7 @@ public class Launch extends Application {
         root.getChildren().add(canvas);
 
         double widthSteve = 40;
-        double heightSteve = 90;
-        double heightHitbox = heightSteve - 10;
+        double heightSteve = 80;
         int blockSize = 40;
         Joueur joueur = new Joueur(widthSteve, heightSteve);
         DeplacerJoueur deplacerJoueur = new DeplacerJoueur(joueur, mainJeu);

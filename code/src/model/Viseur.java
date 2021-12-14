@@ -16,5 +16,4 @@ public class Viseur {
 
         canvas.getGraphicsContext2D().strokeLine(canvas.getWidth()/2, canvas.getHeight()/2, x, y);
     }
-
 }
