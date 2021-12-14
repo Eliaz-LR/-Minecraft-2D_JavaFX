@@ -10,26 +10,33 @@ public class Viseur {
     private double angleDegre;
     private double x;
     private double y;
-    private double width=40;
-    private double height=40;
+    private double width=35;
+    private double height=35;
     private GraphicsContext gc;
-    private Image img= new Image("/images/steve_head.png", width, height, false, true);
+    private Image img;
+    private Image imgD= new Image("/images/steve_head.png", width, height, false, true);
+    private Image imgG= new Image("/images/steve_head2.png", width, height, false, true);
 
 
     public void drawViseur(Canvas canvas, double xSouris, double ySouris) {
         gc = canvas.getGraphicsContext2D();
         double CentreX = canvas.getWidth()/2;
-        double CentreY = canvas.getHeight()/2-20;
+        double CentreY = canvas.getHeight()/2-30;
         double delta_x = xSouris - CentreX;
         double delta_y = ySouris - CentreY;
         angleRad = Math.atan2(delta_y, delta_x);
         angleDegre = Math.toDegrees(angleRad);
         x = CentreX + 128 * Math.cos(angleRad);
         y = CentreY + 128 * Math.sin(angleRad);
-
         gc.strokeLine(CentreX, CentreY, x, y);
         gc.save();
         rotate(angleDegre, CentreX, CentreY);
+        if (angleDegre <= 90 && angleDegre >= -90) {
+            img = imgD;
+        }
+        else {
+            img = imgG;
+        }
         gc.drawImage(img, CentreX-width/2, CentreY-height/2);
         gc.restore();
     }
