@@ -8,7 +8,7 @@ public class DrawGrid {
 
     public DrawGrid(int cellSize){
         this.cellSize = cellSize;
-        this.monde = new Monde(50,20);
+        this.monde = new Monde(100,30);
     }
 
     public void drawGrid(Canvas canvas, double width, double height, int cellSize) {

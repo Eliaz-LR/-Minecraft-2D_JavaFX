@@ -61,11 +61,11 @@ public class Monde {
             }
         }
         type[0][0] = new Type(EnumType.Roche);
-        drawArbre(4,4);
+        //drawArbre(4,4);
     }
     public Type getType(int x, int y){
         if (x<0 || x>=xMax || y<0 || y>=yMax){
-            System.out.println("OUT OF BOUNDS\n");
+            System.out.println("OUT OF BOUNDS");
             return new Type(EnumType.Air);
         }
         return type[x][y];
