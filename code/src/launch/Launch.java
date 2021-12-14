@@ -2,7 +2,6 @@ package launch;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -58,6 +57,7 @@ public class Launch extends Application {
         gc.setStroke(Color.RED);
 
         DrawGrid grid = new DrawGrid(blockSize);
+        Viseur viseur = new Viseur();
 
         final long startNanoTime = System.nanoTime();
         //d'apres le prof, plutot utiliser un thread pour la boucle
@@ -72,16 +72,18 @@ public class Launch extends Application {
 
                 checkBlocks(grid, deplacerJoueur, coo_joueur_dans_monde);
                 deplacerJoueur.deplacerJoueur();
-                if (mouse.coordSet()){
-                    Coordonnees coord_mouse = coo.CanvasToPosition(mouse.x, mouse.y, joueur.x, joueur.y,canvas, grid.cellSize);
+                if (mouse.isCoordSet()){
+                    Coordonnees coord_mouse = coo.CanvasToPosition(mouse.ClickedX, mouse.ClickedY, joueur.x, joueur.y,canvas, grid.cellSize);
                     grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Air));
                     mouse.resetCoord();
                 }
+                System.out.println(mouse.X+" "+mouse.Y);
                 gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
                 grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight());
                 gc.drawImage(joueur.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);
-
-                gc.strokeRect(canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightHitbox/2, widthSteve, heightHitbox);
+                viseur.drawViseur(canvas, mouse.X, mouse.Y);
+                //hitbox
+                //gc.strokeRect(canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightHitbox/2, widthSteve, heightHitbox);
             }
         }.start();
 
@@ -120,7 +122,6 @@ public class Launch extends Application {
         else{
             deplacerJoueur.IsBlockRightEmpty = false;
         }
-
     }
 
 }

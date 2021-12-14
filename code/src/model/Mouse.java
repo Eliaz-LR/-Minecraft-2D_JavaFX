@@ -2,14 +2,16 @@ package model;
 
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 
 public class Mouse {
 
     Scene mainJeu;
-    public double x;
-    public double y;
+    public double ClickedX;
+    public double ClickedY;
+    public double X;
+    public double Y;
+
 
     public Mouse(Scene mainJeu) {
         this.mainJeu = mainJeu;
@@ -22,18 +24,28 @@ public class Mouse {
                 {
                     public void handle(MouseEvent e)
                     {
-                        x = e.getX();
-                        y = e.getY();
+                        ClickedX = e.getX();
+                        ClickedY = e.getY();
+                    }
+                }
+        );
+        mainJeu.setOnMouseMoved(
+                new EventHandler<MouseEvent>()
+                {
+                    public void handle(MouseEvent e)
+                    {
+                        X = e.getX();
+                        Y = e.getY();
                     }
                 }
         );
     }
     public void resetCoord(){
-        x = 0;
-        y = 0;
+        ClickedX = 0;
+        ClickedY = 0;
     }
-    public Boolean coordSet(){
-        if (x == 0 && y == 0){
+    public Boolean isCoordSet(){
+        if (ClickedX == 0 && ClickedY == 0){
             return false;
         }
         return true;
