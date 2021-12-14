@@ -76,7 +76,6 @@ public class Launch extends Application {
                     grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Air));
                     mouse.resetCoord();
                 }
-                System.out.println(mouse.X+" "+mouse.Y);
                 gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
                 grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight());
                 gc.drawImage(joueur.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);
