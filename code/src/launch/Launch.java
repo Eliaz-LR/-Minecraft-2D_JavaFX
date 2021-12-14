@@ -73,7 +73,12 @@ public class Launch extends Application {
                 deplacerJoueur.deplacerJoueur();
                 if (mouse.isCoordSet()){
                     Coordonnees coord_mouse = coo.CanvasToPosition(mouse.ClickedX, mouse.ClickedY, joueur.x, joueur.y,canvas, grid.cellSize);
-                    grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Air));
+                    if (distanceBetweenCoords(canvas.getWidth()/2, canvas.getHeight()/2, mouse.ClickedX, mouse.ClickedY) < blockSize*4){
+                        grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Air));
+                    }
+                    else {
+                        System.out.println("Vous ne pouvez pas detruire un bloc à cet endroit");
+                    }
                     mouse.resetCoord();
                 }
                 gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -81,7 +86,7 @@ public class Launch extends Application {
                 gc.drawImage(joueur.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);
                 viseur.drawViseur(canvas, mouse.X, mouse.Y);
                 //hitbox
-                //gc.strokeRect(canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightHitbox/2, widthSteve, heightHitbox);
+                gc.strokeRect(canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2, widthSteve, heightSteve);
             }
         }.start();
 
@@ -120,6 +125,10 @@ public class Launch extends Application {
         else{
             deplacerJoueur.IsBlockRightEmpty = false;
         }
+    }
+
+    public double distanceBetweenCoords(double x1, double y1, double x2, double y2){
+        return Math.hypot(x1-x2, y1-y2);
     }
 
 }
