@@ -46,15 +46,20 @@ public class Viseur {
         Rotate r = new Rotate(angle, centreX, centreY);
         gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
     }
-    public void drawTargetedCube(double xSouris, double ySouris, double xJoueur, double yJoueur, Canvas canvas, int cellSize){
+    public void drawTargetedCube(double xSouris, double ySouris, double xJoueur, double yJoueur, Canvas canvas, int cellSize, int range){
         gc.setStroke(Color.BLACK);
         gc=canvas.getGraphicsContext2D();
-        Coordonnees souris = new Coordonnees();
-        souris = souris.CanvasToPosition(xSouris,ySouris,xJoueur,yJoueur,canvas,cellSize);
-        souris.x = (int) souris.x;
-        souris.y = (int) souris.y;
-        souris = souris.positionToCanvas(souris.x,souris.y,xJoueur,yJoueur,canvas,cellSize);
-
-        gc.strokeRect(souris.x,souris.y,cellSize,cellSize);
+        Coordonnees coordSouris = new Coordonnees();
+        double distance = distanceBetweenCoords(xSouris,ySouris,canvas.getWidth()/2,canvas.getHeight()/2);
+        coordSouris = coordSouris.CanvasToPosition(xSouris,ySouris,xJoueur,yJoueur,canvas,cellSize);
+        coordSouris.x = (int) coordSouris.x;
+        coordSouris.y = (int) coordSouris.y;
+        coordSouris = coordSouris.positionToCanvas(coordSouris.x,coordSouris.y,xJoueur,yJoueur,canvas,cellSize);
+        if (distance<range){
+            gc.strokeRect(coordSouris.x,coordSouris.y,cellSize,cellSize);
+        }
+    }
+    private double distanceBetweenCoords(double x1, double y1, double x2, double y2){
+        return Math.hypot(x1-x2, y1-y2);
     }
 }

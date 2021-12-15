@@ -43,6 +43,7 @@ public class Launch extends Application {
         double widthSteve = 40;
         double heightSteve = 80;
         int blockSize = 40;
+        int range = blockSize*4;
         Joueur joueur = new Joueur(widthSteve, heightSteve);
         DeplacerJoueur deplacerJoueur = new DeplacerJoueur(joueur, mainJeu);
 
@@ -73,7 +74,7 @@ public class Launch extends Application {
                 deplacerJoueur.deplacerJoueur();
                 if (mouse.isCoordSet()){
                     Coordonnees coord_mouse = coo.CanvasToPosition(mouse.ClickedX, mouse.ClickedY, joueur.x, joueur.y,canvas, grid.cellSize);
-                    if (distanceBetweenCoords(canvas.getWidth()/2, canvas.getHeight()/2, mouse.ClickedX, mouse.ClickedY) < blockSize*4){
+                    if (distanceBetweenCoords(canvas.getWidth()/2, canvas.getHeight()/2, mouse.ClickedX, mouse.ClickedY) < range){
                         grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Air));
                     }
                     else {
@@ -85,7 +86,7 @@ public class Launch extends Application {
                 grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight());
                 gc.drawImage(joueur.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);
                 viseur.drawViseur(canvas, mouse.X, mouse.Y);
-                viseur.drawTargetedCube(mouse.X, mouse.Y, joueur.x, joueur.y, canvas, blockSize);
+                viseur.drawTargetedCube(mouse.X, mouse.Y, joueur.x, joueur.y, canvas, blockSize, range);
                 //hitbox
                 //gc.strokeRect(canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2, widthSteve, heightSteve);
             }
