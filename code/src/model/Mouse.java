@@ -2,6 +2,7 @@ package model;
 
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 public class Mouse {
@@ -11,6 +12,7 @@ public class Mouse {
     public double ClickedY;
     public double X;
     public double Y;
+    public MouseButton mouseButton;
 
 
     public Mouse(Scene mainJeu) {
@@ -24,11 +26,13 @@ public class Mouse {
                 {
                     public void handle(MouseEvent e)
                     {
+                        mouseButton = e.getButton();
                         ClickedX = e.getX();
                         ClickedY = e.getY();
                     }
                 }
         );
+
         mainJeu.setOnMouseMoved(
                 new EventHandler<MouseEvent>()
                 {
