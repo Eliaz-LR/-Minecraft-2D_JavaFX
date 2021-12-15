@@ -3,6 +3,7 @@ package model;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 
 public class Viseur {
@@ -28,7 +29,7 @@ public class Viseur {
         angleDegre = Math.toDegrees(angleRad);
         x = CentreX + 128 * Math.cos(angleRad);
         y = CentreY + 128 * Math.sin(angleRad);
-        gc.strokeLine(CentreX, CentreY, x, y);
+        //gc.strokeLine(CentreX, CentreY, x, y);
         gc.save();
         rotate(angleDegre, CentreX, CentreY);
         if (angleDegre <= 90 && angleDegre >= -90) {
@@ -44,5 +45,15 @@ public class Viseur {
     private void rotate(double angle, double centreX, double centreY) {
         Rotate r = new Rotate(angle, centreX, centreY);
         gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
+    }
+    public void drawTargetedCube(double xSouris, double ySouris, double xJoueur, double yJoueur, Canvas canvas, int cellSize){
+        gc.setStroke(Color.BLACK);
+        gc=canvas.getGraphicsContext2D();
+        Coordonnees souris = new Coordonnees();
+        souris = souris.CanvasToPosition(xSouris,ySouris,xJoueur,yJoueur,canvas,cellSize);
+        souris.x = (int) souris.x;
+        souris.y = (int) souris.y;
+        souris = souris.positionToCanvas(souris.x,souris.y,xJoueur,yJoueur,canvas,cellSize);
+        gc.strokeRect(souris.x,souris.y,40,40);
     }
 }

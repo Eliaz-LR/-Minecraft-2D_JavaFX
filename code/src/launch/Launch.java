@@ -85,8 +85,9 @@ public class Launch extends Application {
                 grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight());
                 gc.drawImage(joueur.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);
                 viseur.drawViseur(canvas, mouse.X, mouse.Y);
+                viseur.drawTargetedCube(mouse.X, mouse.Y, joueur.x, joueur.y, canvas, blockSize);
                 //hitbox
-                gc.strokeRect(canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2, widthSteve, heightSteve);
+                //gc.strokeRect(canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2, widthSteve, heightSteve);
             }
         }.start();
 
