@@ -54,6 +54,7 @@ public class Viseur {
         souris.x = (int) souris.x;
         souris.y = (int) souris.y;
         souris = souris.positionToCanvas(souris.x,souris.y,xJoueur,yJoueur,canvas,cellSize);
-        gc.strokeRect(souris.x,souris.y,40,40);
+
+        gc.strokeRect(souris.x,souris.y,cellSize,cellSize);
     }
 }
