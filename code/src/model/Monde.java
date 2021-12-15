@@ -52,16 +52,18 @@ public class Monde {
                 type[x][y] = new Type(EnumType.Terre);
             }
         }
-        // creation d'une couche de grass au dessus de la terre
+
         int countForTree=0;
         int surface=1;
         for (int x = 0; x < xMax; x++) {
+            // creation d'une couche de grass au dessus de la terre
             for (int y = yMax-10; y > yMax-16; y--) {
                 if (type[x][y].getType() == EnumType.Terre && type[x][y-1].getType() == EnumType.Air) {
                     type[x][y-1] = new Type(EnumType.Herbe);
                     surface = y-2;
                 }
             }
+            //generation aleatoire des arbres
             if (x%10==0 && countForTree<=0){
                 countForTree = ThreadLocalRandom.current().nextInt(10, 40);
             }
