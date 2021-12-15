@@ -53,15 +53,25 @@ public class Monde {
             }
         }
         // creation d'une couche de grass au dessus de la terre
+        int countForTree=0;
+        int surface=1;
         for (int x = 0; x < xMax; x++) {
             for (int y = yMax-10; y > yMax-16; y--) {
                 if (type[x][y].getType() == EnumType.Terre && type[x][y-1].getType() == EnumType.Air) {
                     type[x][y-1] = new Type(EnumType.Herbe);
+                    surface = y-2;
                 }
             }
+            if (x%10==0 && countForTree<=0){
+                countForTree = ThreadLocalRandom.current().nextInt(10, 40);
+            }
+            if (countForTree==1){
+                drawArbre(x,surface);
+            }
+            countForTree--;
         }
         type[0][0] = new Type(EnumType.Roche);
-        //drawArbre(4,4);
+
     }
     public Type getType(int x, int y){
         if (x<0 || x>=xMax || y<0 || y>=yMax){
@@ -80,12 +90,13 @@ public class Monde {
     }
 
     public void drawArbre(int x, int y){
-        type[x][y] = new Type(EnumType.Tronc);
-        type[x][y-1] = new Type(EnumType.Tronc);
-        type[x][y-2] = new Type(EnumType.Tronc);
-        type[x+1][y-3] = new Type(EnumType.Feuilles);
-        type[x][y-3] = new Type(EnumType.Feuilles);
-        type[x-1][y-3] = new Type(EnumType.Feuilles);
-        type[x][y-4] = new Type(EnumType.Feuilles);
+        //place un arbre a partir de la position de son tronc
+        setType(x,y,new Type(EnumType.Tronc));
+        setType(x,y-1,new Type(EnumType.Tronc));
+        setType(x,y-2,new Type(EnumType.Tronc));
+        setType(x+1,y-3,new Type(EnumType.Feuilles));
+        setType(x,y-3,new Type(EnumType.Feuilles));
+        setType(x-1,y-3,new Type(EnumType.Feuilles));
+        setType(x,y-4,new Type(EnumType.Feuilles));
     }
 }

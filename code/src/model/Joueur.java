@@ -27,8 +27,4 @@ public class Joueur {
         this.imgD = new Image("/images/steve-right.png", width, height, false, true);
         this.imgG = new Image("/images/steve.png", width, height, false, true);
     }
-
-
-
-
 }
