@@ -45,7 +45,7 @@ public class GameManager {
     }
 
 
-    public void startGame(){
+    public void startGame(int widthMonde, int heightMonde){
         Group root = new Group();
         Scene mainJeu = new Scene(root);
 
@@ -70,7 +70,8 @@ public class GameManager {
         gc.setFill(Color.LIGHTBLUE);
         gc.setStroke(Color.RED);
 
-        DrawGrid grid = new DrawGrid(blockSize);
+        Monde monde = new Monde(widthMonde, heightMonde);
+        DrawGrid grid = new DrawGrid(blockSize, monde);
         Viseur viseur = new Viseur();
 
         final long startNanoTime = System.nanoTime();

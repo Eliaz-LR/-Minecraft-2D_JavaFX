@@ -24,7 +24,7 @@ public class Menu {
 
     public void handlePlay(ActionEvent actionEvent) {
         handleClose(actionEvent);
-        GameManager.getInstance().startGame();
+        GameManager.getInstance().startGame(100,30);
 
     }
 }

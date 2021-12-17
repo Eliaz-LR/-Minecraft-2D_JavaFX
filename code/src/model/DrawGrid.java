@@ -6,9 +6,9 @@ public class DrawGrid {
     public int cellSize;
     public Monde monde;
 
-    public DrawGrid(int cellSize){
+    public DrawGrid(int cellSize, Monde monde) {
         this.cellSize = cellSize;
-        this.monde = new Monde(100,30);
+        this.monde = monde;
     }
 
     public void drawGrid(Canvas canvas, double width, double height, int cellSize) {
