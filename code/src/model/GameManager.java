@@ -7,10 +7,12 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import javafx.application.Platform;
+import view.JoueurView;
 
 import java.io.IOException;
 
@@ -55,6 +57,7 @@ public class GameManager {
         Canvas canvas = new Canvas(1400, 800);
         root.getChildren().add(canvas);
 
+
         double widthSteve = 40;
         double heightSteve = 80;
         int blockSize = 40;
@@ -66,21 +69,27 @@ public class GameManager {
         coo.x = canvas.getWidth()/2;
         coo.y = canvas.getHeight()/2;
 
-        Joueur joueur = new Joueur(widthSteve, heightSteve);
+
+
+        Joueur joueur = new Joueur();
         joueur.x = 1;
         joueur.y = 1;
-        //je sais pas pourquoi mais le joueur n'est pas par defaut au milieu vraiment, le -18 est donc necessaire (optenu en fesant des experiences)
+
+        //je sais pas pourquoi mais le joueur n'est pas par defaut au milieu vraiment, le -18 est donc necessaire (optenu en faisant des experiences)
+        JoueurView joueurView = new JoueurView(joueur, widthSteve, heightSteve);
         Coordonnees spawn = coo.positionToCanvas(widthMonde/2-18, 0,joueur.x,joueur.y,canvas,blockSize);
         joueur.x = spawn.x;
         DeplacerJoueur deplacerJoueur = new DeplacerJoueur(joueur, mainJeu);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setFill(Color.LIGHTBLUE);
-        gc.setStroke(Color.RED);
 
+        gc.setFill(Color.LIGHTBLUE);
+        
+        gc.setStroke(Color.RED);
         Monde monde = new Monde(widthMonde, heightMonde);
         DrawGrid grid = new DrawGrid(blockSize, monde);
         Viseur viseur = new Viseur();
+
 
         final long startNanoTime = System.nanoTime();
         //d'apres le prof, plutot utiliser un thread pour la boucle
@@ -97,6 +106,7 @@ public class GameManager {
 
 
                         checkBlocks(grid, deplacerJoueur, coo_joueur_dans_monde);
+                        joueurView.playerDirection();
                         deplacerJoueur.deplacerJoueur();
                         if (mouse.isCoordSet()){
                             Coordonnees coord_mouse = coo.CanvasToPosition(mouse.ClickedX, mouse.ClickedY, joueur.x, joueur.y,canvas, grid.cellSize);
@@ -115,7 +125,7 @@ public class GameManager {
                         }
                         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
                         grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight());
-                        gc.drawImage(joueur.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);
+                        gc.drawImage(joueurView.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2 );
                         viseur.drawViseur(canvas, mouse.X, mouse.Y);
                         viseur.drawTargetedCube(mouse.X, mouse.Y, joueur.x, joueur.y, canvas, blockSize, range);
                         //hitbox

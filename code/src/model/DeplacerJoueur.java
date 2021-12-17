@@ -46,10 +46,11 @@ public class DeplacerJoueur {
     }
     public void deplacerJoueur(){
         if(input.contains("LEFT") || input.contains("Q")){
+            joueur.isFacingRight.set(false);
             if (joueur.Xspeed > -10){
                 joueur.Xspeed -= 1;
             }
-            joueur.img = joueur.imgG;
+
             if(IsBlockLeftEmpty){
                 if(joueur.Xspeed < -10){
                     joueur.Xspeed +=1;
@@ -57,10 +58,11 @@ public class DeplacerJoueur {
             }
         }
         else if(input.contains("RIGHT") || input.contains("D")){
+            joueur.isFacingRight.set(true);
             if (joueur.Xspeed < 10) {
                 joueur.Xspeed += 1;
             }
-            joueur.img = joueur.imgD;
+
             if(IsBlockRightEmpty){
                 if (joueur.Xspeed < 10)
                 joueur.Xspeed +=1;
@@ -80,6 +82,7 @@ public class DeplacerJoueur {
         }
         gravity.gravityPlayer();
         checkCollisions();
+
         joueur.x = joueur.x + joueur.Xspeed;
         joueur.y = joueur.y + joueur.Yspeed;
     }
