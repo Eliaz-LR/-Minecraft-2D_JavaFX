@@ -51,7 +51,7 @@ public class GameManager {
 
         primaryStage.setScene(mainJeu);
 
-        Canvas canvas = new Canvas(1200, 800);
+        Canvas canvas = new Canvas(1400, 800);
         root.getChildren().add(canvas);
 
         double widthSteve = 40;
@@ -66,9 +66,10 @@ public class GameManager {
         coo.y = canvas.getHeight()/2;
 
         Joueur joueur = new Joueur(widthSteve, heightSteve);
-        joueur.x = 0;
-        joueur.y = 0;
-        Coordonnees spawn = coo.positionToCanvas(widthMonde/2, 0,0,0,canvas,blockSize);
+        joueur.x = 1;
+        joueur.y = 1;
+        //je sais pas pourquoi mais le joueur n'est pas par defaut au milieu vraiment, le -18 est donc necessaire (optenu en fesant des experiences)
+        Coordonnees spawn = coo.positionToCanvas(widthMonde/2-18, 0,joueur.x,joueur.y,canvas,blockSize);
         joueur.x = spawn.x;
         DeplacerJoueur deplacerJoueur = new DeplacerJoueur(joueur, mainJeu);
 
