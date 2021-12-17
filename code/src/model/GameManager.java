@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -38,7 +39,8 @@ public class GameManager {
         Scene mainMenu = new Scene(loader.load());
         primaryStage.setScene(mainMenu);
         primaryStage.show();
-        startGame();
+
+        //startGame();
 
     }
 
@@ -87,7 +89,12 @@ public class GameManager {
                 if (mouse.isCoordSet()){
                     Coordonnees coord_mouse = coo.CanvasToPosition(mouse.ClickedX, mouse.ClickedY, joueur.x, joueur.y,canvas, grid.cellSize);
                     if (distanceBetweenCoords(canvas.getWidth()/2, canvas.getHeight()/2, mouse.ClickedX, mouse.ClickedY) < range){
-                        grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Air));
+                        if (mouse.mouseButton == MouseButton.PRIMARY){
+                            grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Air));
+                        }
+                        if (mouse.mouseButton == MouseButton.SECONDARY){
+                            grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Roche));
+                        }
                     }
                     else {
                         System.out.println("Vous ne pouvez pas detruire un bloc à cet endroit");
