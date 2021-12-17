@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
+import javafx.application.Platform;
 
 import java.io.IOException;
 
@@ -83,41 +84,49 @@ public class GameManager {
 
         final long startNanoTime = System.nanoTime();
         //d'apres le prof, plutot utiliser un thread pour la boucle
-        new AnimationTimer() {
-            public void handle(long currentNanoTime) {
+        Thread t = new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(15);
+                    Platform.runLater(() -> {
 
-                //System.out.println(deplacerJoueur.input); //affiche la touche dans le terminal
-                //converti et affiche les positions du joueur depuis le canvas vers le monde, les coordonées du joueur sont faites depuis son milieu.
-                Coordonnees coo_joueur_dans_monde = coo.CanvasToPosition(canvas.getWidth()/2,canvas.getHeight()/2, joueur.x, joueur.y,canvas, grid.cellSize);
-                //System.out.println(coo_joueur_dans_monde.x+" "+coo_joueur_dans_monde.y+" id: "+grid.monde.getType((int)coo_joueur_dans_monde.x,(int)coo_joueur_dans_monde.y).toString());
+                        //System.out.println(deplacerJoueur.input); //affiche la touche dans le terminal
+                        //converti et affiche les positions du joueur depuis le canvas vers le monde, les coordonées du joueur sont faites depuis son milieu.
+                        Coordonnees coo_joueur_dans_monde = coo.CanvasToPosition(canvas.getWidth()/2,canvas.getHeight()/2, joueur.x, joueur.y,canvas, grid.cellSize);
+                        //System.out.println(coo_joueur_dans_monde.x+" "+coo_joueur_dans_monde.y+" id: "+grid.monde.getType((int)coo_joueur_dans_monde.x,(int)coo_joueur_dans_monde.y).toString());
 
 
-                checkBlocks(grid, deplacerJoueur, coo_joueur_dans_monde);
-                deplacerJoueur.deplacerJoueur();
-                if (mouse.isCoordSet()){
-                    Coordonnees coord_mouse = coo.CanvasToPosition(mouse.ClickedX, mouse.ClickedY, joueur.x, joueur.y,canvas, grid.cellSize);
-                    if (distanceBetweenCoords(canvas.getWidth()/2, canvas.getHeight()/2, mouse.ClickedX, mouse.ClickedY) < range){
-                        if (mouse.mouseButton == MouseButton.PRIMARY){
-                            grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Air));
+                        checkBlocks(grid, deplacerJoueur, coo_joueur_dans_monde);
+                        deplacerJoueur.deplacerJoueur();
+                        if (mouse.isCoordSet()){
+                            Coordonnees coord_mouse = coo.CanvasToPosition(mouse.ClickedX, mouse.ClickedY, joueur.x, joueur.y,canvas, grid.cellSize);
+                            if (distanceBetweenCoords(canvas.getWidth()/2, canvas.getHeight()/2, mouse.ClickedX, mouse.ClickedY) < range){
+                                if (mouse.mouseButton == MouseButton.PRIMARY){
+                                    grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Air));
+                                }
+                                if (mouse.mouseButton == MouseButton.SECONDARY){
+                                    grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Roche));
+                                }
+                            }
+                            else {
+                                System.out.println("Vous ne pouvez pas detruire un bloc à cet endroit");
+                            }
+                            mouse.resetCoord();
                         }
-                        if (mouse.mouseButton == MouseButton.SECONDARY){
-                            grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Roche));
-                        }
-                    }
-                    else {
-                        System.out.println("Vous ne pouvez pas detruire un bloc à cet endroit");
-                    }
-                    mouse.resetCoord();
+                        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                        grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight());
+                        gc.drawImage(joueur.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);
+                        viseur.drawViseur(canvas, mouse.X, mouse.Y);
+                        viseur.drawTargetedCube(mouse.X, mouse.Y, joueur.x, joueur.y, canvas, blockSize, range);
+                        //hitbox
+                        //gc.strokeRect(canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2, widthSteve, heightSteve);
+                    });
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight());
-                gc.drawImage(joueur.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2);
-                viseur.drawViseur(canvas, mouse.X, mouse.Y);
-                viseur.drawTargetedCube(mouse.X, mouse.Y, joueur.x, joueur.y, canvas, blockSize, range);
-                //hitbox
-                //gc.strokeRect(canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2, widthSteve, heightSteve);
             }
-        }.start();
+        });
+        t.start();
 
         primaryStage.show();
     }
