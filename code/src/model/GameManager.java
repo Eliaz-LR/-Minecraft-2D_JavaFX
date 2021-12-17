@@ -58,13 +58,19 @@ public class GameManager {
         double heightSteve = 80;
         int blockSize = 40;
         int range = blockSize*4;
-        Joueur joueur = new Joueur(widthSteve, heightSteve);
-        DeplacerJoueur deplacerJoueur = new DeplacerJoueur(joueur, mainJeu);
+
 
         Mouse mouse = new Mouse(mainJeu);
         Coordonnees coo = new Coordonnees();
         coo.x = canvas.getWidth()/2;
         coo.y = canvas.getHeight()/2;
+
+        Joueur joueur = new Joueur(widthSteve, heightSteve);
+        joueur.x = 0;
+        joueur.y = 0;
+        Coordonnees spawn = coo.positionToCanvas(widthMonde/2, 0,0,0,canvas,blockSize);
+        joueur.x = spawn.x;
+        DeplacerJoueur deplacerJoueur = new DeplacerJoueur(joueur, mainJeu);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.LIGHTBLUE);

@@ -43,8 +43,6 @@ public class DeplacerJoueur {
                         input.remove(code);
                     }
                 });
-        joueur.x = 250;
-        joueur.y = 0;
     }
     public void deplacerJoueur(){
         if(input.contains("LEFT") || input.contains("Q")){
