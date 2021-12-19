@@ -13,7 +13,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.application.Platform;
-import view.InventoryView;
 import view.JoueurView;
 
 import java.io.IOException;
@@ -90,6 +89,7 @@ public class GameManager {
 
         Monde monde = new Monde(widthMonde, heightMonde);
         DrawGrid grid = new DrawGrid(blockSize, monde);
+        Sound sound = new Sound();
         Viseur viseur = new Viseur();
         Inventory inv = new Inventory();
         inv.fillSlots();
@@ -120,6 +120,7 @@ public class GameManager {
                                 if (mouse.mouseButton == MouseButton.PRIMARY){
                                     inv.setSlot(grid.monde.getType((int)coord_mouse.x, (int)coord_mouse.y));
                                     grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Air));
+                                    //sound.playSound("sounds/stoneBreakingplacing.mp3");
                                 }
                                 if (mouse.mouseButton == MouseButton.SECONDARY){
                                     grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Roche));
