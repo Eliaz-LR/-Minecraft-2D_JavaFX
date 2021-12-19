@@ -10,8 +10,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.input.MouseButton;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.application.Platform;
+import view.InventoryView;
 import view.JoueurView;
 
 import java.io.IOException;
@@ -82,17 +84,21 @@ public class GameManager {
         DeplacerJoueur deplacerJoueur = new DeplacerJoueur(joueur, mainJeu);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
-
         gc.setFill(Color.LIGHTBLUE);
-        
+
         gc.setStroke(Color.RED);
+
         Monde monde = new Monde(widthMonde, heightMonde);
         DrawGrid grid = new DrawGrid(blockSize, monde);
         Viseur viseur = new Viseur();
+        Inventory inv = new Inventory();
+        inv.fillSlots();
+
+
+
 
 
         final long startNanoTime = System.nanoTime();
-        //d'apres le prof, plutot utiliser un thread pour la boucle
         Thread t = new Thread(() -> {
             while (true) {
                 try {
@@ -112,6 +118,7 @@ public class GameManager {
                             Coordonnees coord_mouse = coo.CanvasToPosition(mouse.ClickedX, mouse.ClickedY, joueur.x, joueur.y,canvas, grid.cellSize);
                             if (distanceBetweenCoords(canvas.getWidth()/2, canvas.getHeight()/2, mouse.ClickedX, mouse.ClickedY) < range){
                                 if (mouse.mouseButton == MouseButton.PRIMARY){
+                                    inv.setSlot(grid.monde.getType((int)coord_mouse.x, (int)coord_mouse.y));
                                     grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Air));
                                 }
                                 if (mouse.mouseButton == MouseButton.SECONDARY){
@@ -130,6 +137,12 @@ public class GameManager {
                         viseur.drawTargetedCube(mouse.X, mouse.Y, joueur.x, joueur.y, canvas, blockSize, range);
                         //hitbox
                         //gc.strokeRect(canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2, widthSteve, heightSteve);
+                        //Inventaire
+
+                        //System.out.println(inv.ToString());
+                        inv.drawInventory(canvas);
+                        inv.drawItems(canvas);
+
                     });
                 } catch (InterruptedException e) {
                     e.printStackTrace();
