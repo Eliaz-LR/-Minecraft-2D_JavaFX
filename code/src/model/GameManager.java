@@ -1,21 +1,18 @@
 package model;
 
-import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.input.MouseButton;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.application.Platform;
 import view.JoueurView;
 
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class GameManager {
     private static GameManager gameManager;
@@ -93,8 +90,7 @@ public class GameManager {
         Viseur viseur = new Viseur();
         Inventory inv = new Inventory();
         inv.fillSlots();
-
-
+        Cycle cycle = new Cycle();
 
 
 
@@ -139,10 +135,11 @@ public class GameManager {
                         //hitbox
                         //gc.strokeRect(canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2, widthSteve, heightSteve);
                         //Inventaire
-
-                        //System.out.println(inv.ToString());
                         inv.drawInventory(canvas);
                         inv.drawItems(canvas);
+
+
+                        cycle.changerEtat(canvas);
 
                     });
                 } catch (InterruptedException e) {
