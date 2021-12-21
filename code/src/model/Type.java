@@ -24,16 +24,16 @@ public class Type {
                 this.texture = new Image("/images/Stone_(texture).png", cellSize, cellSize, false, false);
                 break;
             case Terre:
-                this.texture = new Image("/images/Dirt_(texture).jpg", cellSize, cellSize, false, false);
+                this.texture = new Image("/images/Dirt_(texture).png", cellSize, cellSize, false, false);
                 break;
             case Herbe:
-                this.texture = new Image("/images/Grass_(texture).jpg", cellSize, cellSize, false, false);
+                this.texture = new Image("/images/Grass_(texture).png", cellSize, cellSize, false, false);
                 break;
             case Bedrock:
                 this.texture = new Image("/images/Bedrock_(texture).png", cellSize, cellSize, false, false);
                 break;
             case Tronc:
-                this.texture = new Image("/images/Wood_(texture).jpeg", cellSize, cellSize, false, false);
+                this.texture = new Image("/images/Wood_(texture).png", cellSize, cellSize, false, false);
                 break;
             case Feuilles:
                 this.texture = new Image("/images/Leaves_(texture).png", cellSize, cellSize, false, false);
