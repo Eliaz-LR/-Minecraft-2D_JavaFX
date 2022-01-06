@@ -2,6 +2,7 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -23,6 +24,12 @@ public class Menu {
     }
 
     public void handlePlay(ActionEvent actionEvent) {
+//        try {
+//            GameManager.getInstance().menuController.LoadFXML("/fxml/selectWorld.fxml");
+//        }
+//        catch (Exception e){
+//            e.printStackTrace();
+//        }
         handleClose(actionEvent);
         GameManager.getInstance().startGame(80,30);
     }

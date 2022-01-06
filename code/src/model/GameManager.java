@@ -1,5 +1,6 @@
 package model;
 
+import controller.MenuController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -12,11 +13,11 @@ import javafx.application.Platform;
 import view.JoueurView;
 
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class GameManager {
     private static GameManager gameManager;
     public static Stage primaryStage;
+    public MenuController menuController;
 
     private GameManager(){
 
@@ -36,13 +37,8 @@ public class GameManager {
 
         primaryStage.setTitle("Minecraft 2D");
         primaryStage.setResizable(false);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/menuSceneBuild.fxml"));
-        Scene mainMenu = new Scene(loader.load());
-        primaryStage.setScene(mainMenu);
-        primaryStage.show();
-
-        //startGame();
-
+        this.menuController = new MenuController(primaryStage);
+        menuController.LoadFXML("/fxml/menuSceneBuild.fxml");
     }
 
 
