@@ -128,6 +128,7 @@ public class GameManager {
                             mouse.resetCoord();
                         }
                         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                        cycle.changerEtat(canvas);
                         grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight());
                         gc.drawImage(joueurView.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2 );
                         viseur.drawViseur(canvas, mouse.X, mouse.Y);
@@ -137,9 +138,6 @@ public class GameManager {
                         //Inventaire
                         inv.drawInventory(canvas);
                         inv.drawItems(canvas);
-
-
-                        cycle.changerEtat(canvas);
 
                     });
                 } catch (InterruptedException e) {
