@@ -12,10 +12,8 @@
             prefHeight="400.0" prefWidth="600.0">
     <children>
         <Label layoutX="10.0" layoutY="10.0" text="Generation du monde :" />
-        <Label layoutX="10.0" layoutY="40.0" text="Taille horizontale :" />
-        <Spinner fx:id="width" />
-        <Label layoutX="10.0" layoutY="70.0" text="Taille verticale :" />
-        <Spinner fx:id="height" />
-        <Button fx:id="valider_gen" onAction="#handleGenerate" layoutX="10.0" layoutY="100.0" prefHeight="25.0" prefWidth="100.0" text="Valider" />
+        <Button fx:id="genPetit" layoutX="10.0" layoutY="40.0" text="Petit" onAction="#genPetit" />
+        <Button fx:id="genMoyen" layoutX="10.0" layoutY="70.0" text="Moyen" onAction="#genMoyen" />
+        <Button fx:id="genGrand" onAction="#genGrand" layoutX="10.0" layoutY="100.0" prefHeight="25.0" prefWidth="100.0" text="Grand" />
     </children>
 </AnchorPane>
