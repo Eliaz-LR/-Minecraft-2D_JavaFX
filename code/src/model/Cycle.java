@@ -1,9 +1,17 @@
 package model;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.FillTransition;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
-import org.w3c.dom.css.RGBColor;
+import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
+
+
+import java.util.Date;
 
 
 /*
@@ -11,7 +19,6 @@ import org.w3c.dom.css.RGBColor;
     Description : Classe gérant le cycle jour nuit en changeant le fond du canvas à interval régulier
 
     -Attributs-
-    dayTime : s'incrémente à chaque passage dans la boucle de jeu
     isNight : boolean pour savoir si c'est le jour ou la nuit
     Image : sprite de la Lune.
 
@@ -20,28 +27,30 @@ import org.w3c.dom.css.RGBColor;
 
  */
 public class Cycle {
-    private int dayTime;
     private boolean isNight = false;
     private Image moon = new Image("/images/moon.png");
+    private SimpleDoubleProperty gameTime = new SimpleDoubleProperty();
+
+    public Cycle(){
+        gameTime.bind(GameManager.getInstance().gameTimeP);
+    }
 
     public void changerEtat(Canvas canvas){
-        dayTime++;
-        if(dayTime == 500){ //Durée normale 1500
-            isNight = !isNight;
-            if (isNight) dayTime = 300;
-            else dayTime = 0;
-
-        }
+        if(gameTime.getValue()%1600 == 0) isNight = !isNight;
 
         if (isNight){
-            for(double luminosite = 1.0; luminosite > 0; luminosite = luminosite-0.00001 ){
-                System.out.println(luminosite);
-                canvas.getGraphicsContext2D().setFill((Color.hsb(122,1,luminosite)));
-
-            }
-            canvas.getGraphicsContext2D().drawImage(moon, canvas.getWidth()/2-300, canvas.getHeight()/2-300, 80, 75);
+            canvas.getGraphicsContext2D().setFill(Color.hsb(200,1, gameTime.getValue()%1600/100/8/2)); //gameTime.getValue()%1600/100/8/2 permet de faire le ration entre 800 et 0.5 ce qui permet de mofifier la luminosité en fonction du temps
+            //canvas.getGraphicsContext2D().drawImage(moon, canvas.getWidth()/2-300, canvas.getHeight()/2-300, 80, 75);
         }
-        else canvas.getGraphicsContext2D().setFill(Color.hsb(200,1,1));
+        else canvas.getGraphicsContext2D().setFill(Color.hsb(200,1, 1 - gameTime.getValue()%1600/100/8/2));
+
+
+
+
+
+
+        //System.out.println(gameTime.getValue());
+        System.out.println(gameTime.getValue()%1600);
     }
 
 }

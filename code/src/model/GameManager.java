@@ -1,6 +1,7 @@
 package model;
 
 import controller.MenuController;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -8,6 +9,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.input.MouseButton;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.application.Platform;
 import view.JoueurView;
@@ -18,6 +20,8 @@ public class GameManager {
     private static GameManager gameManager;
     public static Stage primaryStage;
     public MenuController menuController;
+    private long gameTime = 0;
+    public SimpleLongProperty gameTimeP = new SimpleLongProperty();
 
     private GameManager(){
 
@@ -76,7 +80,7 @@ public class GameManager {
         DeplacerJoueur deplacerJoueur = new DeplacerJoueur(joueur, mainJeu);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setFill(Color.LIGHTBLUE);
+//        gc.setFill(Color.LIGHTBLUE);
 
         gc.setStroke(Color.RED);
 
@@ -87,6 +91,7 @@ public class GameManager {
         Inventory inv = new Inventory();
         inv.fillSlots();
         Cycle cycle = new Cycle();
+        gameTimeP.setValue(0);
 
 
 
@@ -96,7 +101,8 @@ public class GameManager {
                 try {
                     Thread.sleep(15);
                     Platform.runLater(() -> {
-
+                        gameTime++;
+                        gameTimeP.setValue(gameTimeP.getValue() + 1);
                         //System.out.println(deplacerJoueur.input); //affiche la touche dans le terminal
                         //converti et affiche les positions du joueur depuis le canvas vers le monde, les coordonées du joueur sont faites depuis son milieu.
                         Coordonnees coo_joueur_dans_monde = coo.CanvasToPosition(canvas.getWidth()/2,canvas.getHeight()/2, joueur.x, joueur.y,canvas, grid.cellSize);
@@ -182,5 +188,9 @@ public class GameManager {
 
     private double distanceBetweenCoords(double x1, double y1, double x2, double y2){
         return Math.hypot(x1-x2, y1-y2);
+    }
+
+    public long getGameTime(){
+        return gameTime;
     }
 }
