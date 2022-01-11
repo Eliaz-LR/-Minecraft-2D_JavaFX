@@ -41,15 +41,20 @@ public class Cycle {
 
     public void changerEtat(Canvas canvas){
         currentTime = gameTime.get();
-        if(currentTime > timeForCycle) {
-            currentTime=currentTime%timeForCycle;
-        }
-        canvas.getGraphicsContext2D().setFill(Color.hsb(getHue(),0.5, getLight()));
-        System.out.println(currentTime);
+        currentTime=currentTime%timeForCycle;
+        canvas.getGraphicsContext2D().setFill(Color.hsb(197,0.5, getLight()));
+        System.out.println((currentTime/timeForCycle)*24);
     }
 
+    //fonction non utilisée mais grave belle, svp suprimez pas
     private double getHue(){
-        return 197;
+        Color color1 = Color.hsb(197,0.5,1);
+        Color color2 = Color.hsb(35,1,1);
+        double percent = 1 - getLight();
+        double resultRed = color1.getRed() + percent * (color2.getRed() - color1.getRed());
+        double resultGreen = color1.getGreen() + percent * (color2.getGreen() - color1.getGreen());
+        double resultBlue = color1.getBlue() + percent * (color2.getBlue() - color1.getBlue());
+        return (new Color(resultRed, resultGreen, resultBlue, 1)).getHue();
     }
 
     private double getLight(){
