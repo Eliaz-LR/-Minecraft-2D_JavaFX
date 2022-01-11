@@ -27,7 +27,11 @@ import java.util.Date;
 
  */
 public class Cycle {
-    private boolean isNight = false;
+    private int timeForCycle = 1600;
+    private double currentTime;
+    private double heure = timeForCycle/24;
+    //heure = 1/24eme du cycle
+    //heure 0 : midi, 12 : minuit
     private Image moon = new Image("/images/moon.png");
     private SimpleDoubleProperty gameTime = new SimpleDoubleProperty();
 
@@ -36,21 +40,42 @@ public class Cycle {
     }
 
     public void changerEtat(Canvas canvas){
-        if(gameTime.getValue()%1600 == 0) isNight = !isNight;
-
-        if (isNight){
-            canvas.getGraphicsContext2D().setFill(Color.hsb(197,0.5, gameTime.getValue()%1600/100/8/2)); //gameTime.getValue()%1600/100/8/2 permet de faire le ration entre 800 et 0.5 ce qui permet de mofifier la luminosité en fonction du temps
-            //canvas.getGraphicsContext2D().drawImage(moon, canvas.getWidth()/2-300, canvas.getHeight()/2-300, 80, 75);
+        currentTime = gameTime.get();
+        if(currentTime > timeForCycle) {
+            currentTime=currentTime%timeForCycle;
         }
-        else canvas.getGraphicsContext2D().setFill(Color.hsb(197,0.5, 1 - gameTime.getValue()%1600/100/8/2));
+        canvas.getGraphicsContext2D().setFill(Color.hsb(getHue(),0.5, getLight()));
+        System.out.println(currentTime);
+    }
 
+    private double getHue(){
+        return 197;
+    }
 
+    private double getLight(){
+        //if jour
+        if (currentTime<=heure*5 || currentTime>=heure*19){
+            return 1;
+        }
+        //if nuit
+        if (currentTime>=heure*7 && currentTime<=heure*17){
+            return 0;
+        }
 
+        //if matin
+        if (currentTime>heure*17 && currentTime<heure*19){
+            double adjustedTime = currentTime-heure*17;
+            double x = 1/(2*heure);
+            return (x*adjustedTime);
+        }
+        //if soir
+        if (currentTime>heure*5 && currentTime<heure*7){
+            double adjustedTime = currentTime-heure*5;
+            double x = 1/(2*heure);
+            return (1-x*adjustedTime);
+        }
 
-
-
-        //System.out.println(gameTime.getValue());
-        System.out.println(gameTime.getValue()%1600);
+        return 0;
     }
 
 }
