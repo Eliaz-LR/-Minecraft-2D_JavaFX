@@ -39,10 +39,10 @@ public class Cycle {
         if(gameTime.getValue()%1600 == 0) isNight = !isNight;
 
         if (isNight){
-            canvas.getGraphicsContext2D().setFill(Color.hsb(200,1, gameTime.getValue()%1600/100/8/2)); //gameTime.getValue()%1600/100/8/2 permet de faire le ration entre 800 et 0.5 ce qui permet de mofifier la luminosité en fonction du temps
+            canvas.getGraphicsContext2D().setFill(Color.hsb(197,0.5, gameTime.getValue()%1600/100/8/2)); //gameTime.getValue()%1600/100/8/2 permet de faire le ration entre 800 et 0.5 ce qui permet de mofifier la luminosité en fonction du temps
             //canvas.getGraphicsContext2D().drawImage(moon, canvas.getWidth()/2-300, canvas.getHeight()/2-300, 80, 75);
         }
-        else canvas.getGraphicsContext2D().setFill(Color.hsb(200,1, 1 - gameTime.getValue()%1600/100/8/2));
+        else canvas.getGraphicsContext2D().setFill(Color.hsb(197,0.5, 1 - gameTime.getValue()%1600/100/8/2));
 
 
 
