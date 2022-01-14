@@ -2,19 +2,20 @@ package model;
 
 import controller.MenuController;
 import javafx.beans.property.SimpleLongProperty;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.input.MouseButton;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.application.Platform;
 import view.JoueurView;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 public class GameManager {
     private static GameManager gameManager;
@@ -22,10 +23,11 @@ public class GameManager {
     public MenuController menuController;
     private long gameTime = 0;
     public SimpleLongProperty gameTimeP = new SimpleLongProperty();
+    public Musique music;
+    private Monde monde;
+    private DrawGrid grid;
 
-    private GameManager(){
 
-    };
 
     public final static  GameManager getInstance(){
         if(GameManager.gameManager == null){
@@ -80,19 +82,18 @@ public class GameManager {
         DeplacerJoueur deplacerJoueur = new DeplacerJoueur(joueur, mainJeu);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
-//        gc.setFill(Color.LIGHTBLUE);
 
         gc.setStroke(Color.RED);
 
-        Monde monde = new Monde(widthMonde, heightMonde);
-        DrawGrid grid = new DrawGrid(blockSize, monde);
-        Sound sound = new Sound();
+        monde = new Monde(widthMonde, heightMonde);
+        grid = new DrawGrid(blockSize, monde);
         Viseur viseur = new Viseur();
         Inventory inv = new Inventory();
         inv.fillSlots();
         Cycle cycle = new Cycle();
         gameTimeP.setValue(0);
-
+        music = new Musique();
+        music.playSound();
 
 
         final long startNanoTime = System.nanoTime();
@@ -150,6 +151,11 @@ public class GameManager {
         t.start();
 
         primaryStage.show();
+
+        //monde.saveMonde();
+
+
+
     }
 
     public void checkBlocks(DrawGrid grid, DeplacerJoueur deplacerJoueur, Coordonnees coo_joueur_dans_monde){
@@ -190,7 +196,10 @@ public class GameManager {
         return Math.hypot(x1-x2, y1-y2);
     }
 
-    public long getGameTime(){
-        return gameTime;
+
+
+    public void stop(){
+        grid.afficherType();
+        music.stopMusique();
     }
 }
