@@ -44,6 +44,13 @@ public class Cycle {
         currentTime=currentTime%timeForCycle;
         canvas.getGraphicsContext2D().setFill(Color.hsb(197,0.5, getLight()));
         System.out.println((currentTime/timeForCycle)*24);
+        drawMoon(canvas);
+    }
+
+    private void drawMoon(Canvas canvas){
+        canvas.getGraphicsContext2D().setGlobalAlpha(1-getLight());
+        canvas.getGraphicsContext2D().drawImage(moon,canvas.getWidth()/2-300, canvas.getHeight()/2-300, 80, 75);
+        canvas.getGraphicsContext2D().setGlobalAlpha(1);
     }
 
     //fonction non utilisée mais grave belle, svp suprimez pas
