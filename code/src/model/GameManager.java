@@ -53,6 +53,8 @@ public class GameManager {
         Scene mainJeu = new Scene(root);
 
         primaryStage.setScene(mainJeu);
+
+
         //permet de fermer le programme quand on ferme la fenêtre
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
