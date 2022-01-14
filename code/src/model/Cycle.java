@@ -43,7 +43,7 @@ public class Cycle {
         currentTime = gameTime.get();
         currentTime=currentTime%timeForCycle;
         canvas.getGraphicsContext2D().setFill(Color.hsb(197,0.5, getLight()));
-        System.out.println((currentTime/timeForCycle)*24);
+        //System.out.println((currentTime/timeForCycle)*24);
     }
 
     //fonction non utilisée mais grave belle, svp suprimez pas
