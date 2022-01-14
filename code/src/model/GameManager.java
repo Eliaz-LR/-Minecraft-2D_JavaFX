@@ -2,6 +2,7 @@ package model;
 
 import controller.MenuController;
 import javafx.beans.property.SimpleLongProperty;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -12,6 +13,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.application.Platform;
+import javafx.stage.WindowEvent;
 import view.JoueurView;
 
 import java.io.IOException;
@@ -51,6 +53,14 @@ public class GameManager {
         Scene mainJeu = new Scene(root);
 
         primaryStage.setScene(mainJeu);
+        //permet de fermer le programme quand on ferme la fenêtre
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent e) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
 
         Canvas canvas = new Canvas(1400, 800);
         root.getChildren().add(canvas);
