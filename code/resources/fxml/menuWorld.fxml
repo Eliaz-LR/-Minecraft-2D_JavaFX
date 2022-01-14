@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.effect.DropShadow?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.Generation"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <ImageView fitHeight="800.0" fitWidth="1200.0" layoutX="1.0">
+            <image>
+                <Image url="/images/mc_bg.png" />
+            </image>
+        </ImageView>
+        <Label alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="310.0" layoutY="64.0" prefHeight="101.0" prefWidth="600.0" style="-fx-border-radius: 100px;" text="GENERATION MONDE" textFill="WHITE" textOverrun="CLIP">
+            <font>
+                <Font name="Carlito Bold" size="63.0" />
+            </font>
+            <effect>
+                <DropShadow height="50.65" radius="24.085" spread="0.17" width="47.69" />
+            </effect>
+        </Label>
+        <Button fx:id="genPetit" layoutX="521.0" layoutY="290.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="159.0" style="-fx-background-color: grey;" text="Petit" onAction="#genPetit">
+            <font>
+                <Font name="Carlito" size="20.0" />
+            </font>
+        </Button>
+
+
+        <Button fx:id="genMoyen" layoutX="521.0" layoutY="350.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="159.0" style="-fx-background-color: grey;"  text="Moyen" onAction="#genMoyen">
+            <font>
+                <Font name="Carlito" size="20.0" />
+            </font>
+        </Button>
+        <Button fx:id="genGrand" onAction="#genGrand" layoutX="521.0" layoutY="410.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="159.0" style="-fx-background-color: grey;" text="Grand">
+            <font>
+                <Font name="Carlito" size="20.0" />
+            </font>
+        </Button>
+    </children>
+
+</AnchorPane>

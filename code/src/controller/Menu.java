@@ -15,12 +15,9 @@ public class Menu {
 
     @FXML private javafx.scene.control.Button buttonClose;
 
-     //buttonPlay.setOnAction(event -> startGame(primaryStage)); fonctionnera quand il aura le singleton
 
     public void handleClose (ActionEvent actionEvent){
-        // get a handle to the stage
         Stage stage = (Stage) buttonClose.getScene().getWindow();
-        // do what you have to do
         stage.close();
     }
 
@@ -28,8 +25,9 @@ public class Menu {
         try{
 
 
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/selectWorld.fxml"));
-            Scene scene = new Scene(root, 300, 275);
+//            Parent root = FXMLLoader.load(getClass().getResource("/fxml/selectWorld.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/menuWorld.fxml"));
+            Scene scene = new Scene(root, 1200, 800);
             Stage stage = (Stage) buttonClose.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
@@ -37,16 +35,6 @@ public class Menu {
         }catch(Exception e){
             e.printStackTrace();
         }
-
-
-//        try {
-//            GameManager.getInstance().menuController.LoadFXML("/fxml/selectWorld.fxml");
-//        }
-//        catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        handleClose(actionEvent);
-//        GameManager.getInstance().startGame(80,30);
     }
 
 

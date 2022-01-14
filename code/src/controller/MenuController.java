@@ -16,6 +16,8 @@ public class MenuController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(FxmlURL));
         Scene mainMenu = new Scene(loader.load());
         stage.setScene(mainMenu);
+        mainMenu.getWindow().centerOnScreen();
         stage.show();
+
     }
 }
