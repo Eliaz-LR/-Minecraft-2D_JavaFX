@@ -1,9 +1,13 @@
 package model;
 import model.Type;
 import model.EnumType;
+
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Monde {
+public class Monde implements Serializable {
     private Type[][] type;
     public int xMax;
     public int yMax;
@@ -83,6 +87,26 @@ public class Monde {
         return type[x][y];
     }
 
+    public Type[][] getTabType(){
+        return type;
+    }
+
+    /**
+     * Retourne la largeur maximale du monde
+     * @return largeur maximale du monde
+     */
+    public int getXMax(){
+        return xMax;
+    }
+
+    /**
+     * Retourne la hauteur maximale du monde
+     * @return hauteur maximale du monde
+     */
+    public int getYMax(){
+        return yMax;
+    }
+
     public void setType(int x, int y, Type t){
         if (x<0 || x>=xMax || y<0 || y>=yMax){
             System.out.println("Erreur : coordonnées hors du monde");
@@ -101,4 +125,10 @@ public class Monde {
         setType(x-1,y-3,new Type(EnumType.Feuilles));
         setType(x,y-4,new Type(EnumType.Feuilles));
     }
+
+
+
+
+
+
 }

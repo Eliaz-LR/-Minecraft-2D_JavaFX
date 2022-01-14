@@ -1,8 +1,12 @@
 package model;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import model.EnumType;
 
-public class Type {
+import java.io.Serializable;
+import java.security.SecureRandomParameters;
+
+public class Type implements Serializable {
     public EnumType type;
     public Image texture;
     private int cellSize;
