@@ -2,14 +2,18 @@ package model;
 
 import controller.MenuController;
 import javafx.beans.property.SimpleLongProperty;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.input.MouseButton;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.application.Platform;
+import javafx.stage.WindowEvent;
 import view.JoueurView;
 
 import java.io.FileInputStream;
@@ -27,7 +31,9 @@ public class GameManager {
     private Monde monde;
     private DrawGrid grid;
 
+    private GameManager(){
 
+    };
 
     public final static  GameManager getInstance(){
         if(GameManager.gameManager == null){
@@ -53,6 +59,16 @@ public class GameManager {
         Scene mainJeu = new Scene(root);
 
         primaryStage.setScene(mainJeu);
+
+
+        //permet de fermer le programme quand on ferme la fenêtre
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent e) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
 
         Canvas canvas = new Canvas(1400, 800);
         root.getChildren().add(canvas);
@@ -82,6 +98,7 @@ public class GameManager {
         DeplacerJoueur deplacerJoueur = new DeplacerJoueur(joueur, mainJeu);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
+//        gc.setFill(Color.LIGHTBLUE);
 
         gc.setStroke(Color.RED);
 
@@ -151,11 +168,6 @@ public class GameManager {
         t.start();
 
         primaryStage.show();
-
-        //monde.saveMonde();
-
-
-
     }
 
     public void checkBlocks(DrawGrid grid, DeplacerJoueur deplacerJoueur, Coordonnees coo_joueur_dans_monde){

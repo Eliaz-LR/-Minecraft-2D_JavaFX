@@ -27,9 +27,10 @@ import java.util.Date;
 
  */
 public class Cycle {
-    private int timeForCycle = 1600;
+    //VOUS POUVEZ CHANGER CETTE VARIABLE POUR CHANGER LA DUREE D'UN CYCLE JOUR/NUIT
+    private static int timeForCycle = 1600;
     private double currentTime;
-    private double heure = timeForCycle/24;
+    private static double heure = timeForCycle/24;
     //heure = 1/24eme du cycle
     //heure 0 : midi, 12 : minuit
     private Image moon = new Image("/images/moon.png");
@@ -43,7 +44,14 @@ public class Cycle {
         currentTime = gameTime.get();
         currentTime=currentTime%timeForCycle;
         canvas.getGraphicsContext2D().setFill(Color.hsb(197,0.5, getLight()));
-        //System.out.println((currentTime/timeForCycle)*24);
+        System.out.println((currentTime/timeForCycle)*24);
+        drawMoon(canvas);
+    }
+
+    private void drawMoon(Canvas canvas){
+        canvas.getGraphicsContext2D().setGlobalAlpha(1-getLight());
+        canvas.getGraphicsContext2D().drawImage(moon,canvas.getWidth()/2-300, canvas.getHeight()/2-300, 80, 75);
+        canvas.getGraphicsContext2D().setGlobalAlpha(1);
     }
 
     //fonction non utilisée mais grave belle, svp suprimez pas
