@@ -13,8 +13,8 @@ public class Viseur {
     private double angleDegre;
     private double x;
     private double y;
-    private double width=35;
-    private double height=35;
+    private static double width=35;
+    private static double height=35;
     private GraphicsContext gc;
     private Image img;
     private Image imgD= new Image("/images/steve_head.png", width, height, false, true);
