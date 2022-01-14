@@ -1,23 +1,15 @@
 package launch;
 
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.paint.Color;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import model.*;
 
+import java.io.File;
 import java.io.IOException;
-
-import model.Coordonnees;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class Launch extends Application {
 
@@ -31,5 +23,14 @@ public class Launch extends Application {
         GameManager.getInstance();
         GameManager.primaryStage = primaryStage;
         GameManager.getInstance().start();
+
+    }
+
+    /**
+     * Arrête la musique lorsque le programme est fermé
+     */
+    @Override
+    public void stop(){
+        GameManager.getInstance().stop();
     }
 }
