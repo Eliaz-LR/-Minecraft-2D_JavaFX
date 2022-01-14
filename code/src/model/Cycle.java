@@ -27,9 +27,10 @@ import java.util.Date;
 
  */
 public class Cycle {
-    private int timeForCycle = 1600;
+    //VOUS POUVEZ CHANGER CETTE VARIABLE POUR CHANGER LA DUREE D'UN CYCLE JOUR/NUIT
+    private static int timeForCycle = 1600;
     private double currentTime;
-    private double heure = timeForCycle/24;
+    private static double heure = timeForCycle/24;
     //heure = 1/24eme du cycle
     //heure 0 : midi, 12 : minuit
     private Image moon = new Image("/images/moon.png");
