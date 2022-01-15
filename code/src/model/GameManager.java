@@ -16,10 +16,7 @@ import javafx.application.Platform;
 import javafx.stage.WindowEvent;
 import view.JoueurView;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 public class GameManager {
     private static GameManager gameManager;
@@ -65,6 +62,7 @@ public class GameManager {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent e) {
+                stop();
                 Platform.exit();
                 System.exit(0);
             }
@@ -98,12 +96,18 @@ public class GameManager {
         DeplacerJoueur deplacerJoueur = new DeplacerJoueur(joueur, mainJeu);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
-//        gc.setFill(Color.LIGHTBLUE);
+
 
         gc.setStroke(Color.RED);
 
         monde = new Monde(widthMonde, heightMonde);
         grid = new DrawGrid(blockSize, monde);
+//        if(new File("f.txt").isFile()){
+//            //récupérer le monde
+//            SaveMonde sm = new SaveMonde(monde);
+//            grid.monde.setTabType(sm.tabLoadMonde);
+//
+//        }
         Viseur viseur = new Viseur();
         Inventory inv = new Inventory();
         inv.fillSlots();
@@ -211,7 +215,9 @@ public class GameManager {
 
 
     public void stop(){
-        grid.afficherType();
+        //grid.afficherType();
+        SaveMonde sm = new SaveMonde(monde);
+        sm.sauverMonde();
         music.stopMusique();
     }
 }
