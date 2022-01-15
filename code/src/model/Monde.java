@@ -1,15 +1,20 @@
 package model;
 import model.Type;
 import model.EnumType;
-
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Monde implements Serializable {
+public class Monde {
+    /**
+     * Tableau de Type représentant le monde
+     */
     private Type[][] type;
+    /**
+     * Largeur de type maximum, donc du monde
+     */
     public int xMax;
+    /**
+     * Hauteur de type maximum, donc du monde
+     */
     public int yMax;
 
     public Monde(int xMax, int yMax){
@@ -92,6 +97,13 @@ public class Monde implements Serializable {
     }
 
     /**
+     * Permet de set le tableau de Type
+     * @param tabInput
+     */
+    public void setTabType(Type[][] tabInput){
+        this.type = tabInput;
+    }
+    /**
      * Retourne la largeur maximale du monde
      * @return largeur maximale du monde
      */
@@ -115,6 +127,11 @@ public class Monde implements Serializable {
         type[x][y] = t;
     }
 
+    /**
+     * Dessine arbre
+     * @param x coordonnées x de la base de l'arbre
+     * @param y coordonnées y de la base de l'arbre
+     */
     public void drawArbre(int x, int y){
         //place un arbre a partir de la position de son tronc
         setType(x,y,new Type(EnumType.Tronc));
@@ -125,10 +142,4 @@ public class Monde implements Serializable {
         setType(x-1,y-3,new Type(EnumType.Feuilles));
         setType(x,y-4,new Type(EnumType.Feuilles));
     }
-
-
-
-
-
-
 }
