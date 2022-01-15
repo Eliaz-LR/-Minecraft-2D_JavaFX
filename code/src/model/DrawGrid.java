@@ -2,8 +2,7 @@ package model;
 
 import javafx.scene.canvas.Canvas;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+
 
 /**
  *  Gère l'affichage initial du monde au lancement du jeu.
@@ -71,35 +70,10 @@ public class DrawGrid {
      * Permet d'afficher le tableau type sous forme de caractère
      */
     public void afficherType(){
-        int[][] tabMonde = new int[0][];
-    //remplacer type de bloc par chiffre
-
         for(int i = 0; i < monde.getYMax(); i++){
             for(int y = 0; y < monde.getXMax(); y++){
-
-                switch (monde.getTabType()[y][i].getType()){
-                    case Air:
-                        //mettre 0 dans case nouveau tableau
-                        tabMonde[y][i] = 0;
-                        break;
-                }
                 System.out.println(monde.getTabType()[y][i].toString());
-
             }
-        }
-    }
-
-    public void saveMonde(){
-        try{
-            FileOutputStream fout = new FileOutputStream("f.txt");
-            ObjectOutputStream out = new ObjectOutputStream(fout);
-            out.writeObject(monde.getTabType().toString());
-            out.writeObject(monde);
-
-            out.flush();
-            out.close();
-        }catch (Exception e){
-            e.printStackTrace();
         }
     }
 }
