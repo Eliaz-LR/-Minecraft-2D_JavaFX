@@ -5,11 +5,28 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * Enregistre l'état du monde
+ */
 public class SaveMonde {
+    /**
+     * Tableau d'int correspondant au tableau de Type actuel (a chaque EnumType particulier est associé une valeur précise)
+     */
     int[][] tabSaveMonde;
+    /**
+     * Tableau servant à charger les données récupérées
+     */
     Type[][] tabLoadMonde;
     int[][] mondeRecup;
+    /**
+     * Monde à enregistrer
+     */
     Monde monde;
+
+    /**
+     * Instancie et donne à tabSaveMonde la même taille que le monde passé en paramètre.
+     * @param monde
+     */
     public SaveMonde(Monde monde){
         this.monde = monde;
         tabSaveMonde = new int[monde.xMax][monde.yMax];
@@ -65,6 +82,9 @@ public class SaveMonde {
         }
     }
 
+    /**
+     * Récupère les informations sur un monde précédemment enregistré.
+     */
     private void recupMonde(){
         try{
             ObjectInputStream in = new ObjectInputStream(new FileInputStream("f.txt"));
@@ -76,6 +96,10 @@ public class SaveMonde {
         }
     }
 
+    /**
+     * Passe le tableau d'int mondeRecup en un tableau de Type tabLoadMonde
+     * @return tabLoadMonde : un tableau de Type
+     */
     private Type[][] intToType(){
         int hauteur = mondeRecup.length;
         int largeur = mondeRecup[0].length;
@@ -117,7 +141,11 @@ public class SaveMonde {
         return tabLoadMonde;
     }
 
-    public Type[][]getMondeSauver(){
+    /**
+     * Permet de récupérer le dernier monde enregistré.
+     * @return
+     */
+    public Type[][] getMondeSauver(){
         recupMonde();
         return intToType();
     }

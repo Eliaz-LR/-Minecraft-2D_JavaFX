@@ -6,7 +6,7 @@ import javafx.scene.media.MediaPlayer;
 import java.io.File;
 
 /**
- * Permet de joueur une musique lors du lancement d'un monde
+ * Permet de jouer une musique lors du lancement d'un monde
  */
 public class Musique {
     /**
