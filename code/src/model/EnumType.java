@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Enum de tout les types de blocs existant.
+ * Enum de tous les types de blocs existants.
  */
 public enum EnumType {
     Air,        //0

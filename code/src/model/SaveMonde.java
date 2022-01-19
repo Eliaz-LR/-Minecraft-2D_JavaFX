@@ -25,7 +25,7 @@ public class SaveMonde {
 
     /**
      * Instancie et donne à tabSaveMonde la même taille que le monde passé en paramètre.
-     * @param monde
+     * @param monde Monde à enregistrer.
      */
     public SaveMonde(Monde monde){
         this.monde = monde;
@@ -89,7 +89,6 @@ public class SaveMonde {
         try{
             ObjectInputStream in = new ObjectInputStream(new FileInputStream("f.txt"));
             mondeRecup = (int[][]) in.readObject();
-            System.out.println(mondeRecup);
             in.close();
         }catch (Exception e){
             e.printStackTrace();
@@ -143,7 +142,7 @@ public class SaveMonde {
 
     /**
      * Permet de récupérer le dernier monde enregistré.
-     * @return
+     * @return retourne un tableau de Type représentant le monde.
      */
     public Type[][] getMondeSauver(){
         recupMonde();

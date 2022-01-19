@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 public class Type implements Serializable {
     /**
-     * Défini le type comme étant un bloc spécifique (bloc d'air, de terre , etc...).
+     * Défini le type comme étant un bloc spécifique (bloc d'air, de terre, etc.).
      */
     public EnumType type;
     /**
@@ -18,7 +18,7 @@ public class Type implements Serializable {
     /**
      * Taille d'un type dans le monde
      */
-    private int cellSize;
+    private final int cellSize;
 
     public Type(EnumType type){
         this.type = type;

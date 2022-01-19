@@ -15,7 +15,7 @@ import view.JoueurView;
 import java.io.*;
 
 /**
- * Gère le fonctionnement du jeu (Instanciation, boucle de jeu etc...).
+ * Gère le fonctionnement du jeu (Instanciation, boucle de jeu, etc.).
  */
 public class GameManager {
     /**
@@ -87,7 +87,7 @@ public class GameManager {
         joueur.x = 1;
         joueur.y = 1;
 
-        //Je sais pas pourquoi mais le joueur n'est pas par défaut au milieu vraiment, le -18 est donc nécessaire (optenu en faisant des experiences)
+        //Je ne sais pas pourquoi, mais le joueur n'est pas par défaut au milieu vraiment, le -18 est donc nécessaire (obtenu en faisant des experiences)
         JoueurView joueurView = new JoueurView(joueur, widthSteve, heightSteve);
         Coordonnees spawn = coo.positionToCanvas(widthMonde/2-18, 0,joueur.x,joueur.y,canvas,blockSize);
         joueur.x = spawn.x;
@@ -114,10 +114,10 @@ public class GameManager {
                     Thread.sleep(15);
                     Platform.runLater(() -> {
                         gameTimeP.setValue(gameTimeP.getValue() + 1);
-                        //System.out.println(deplacerJoueur.input); //affiche la touche dans le terminal
-                        //converti et affiche les positions du joueur depuis le canvas vers le monde, les coordonées du joueur sont faites depuis son milieu.
+
+                        //converti et affiche les positions du joueur depuis le canvas vers le monde, les coordonnées du joueur sont faites depuis son milieu.
                         Coordonnees coo_joueur_dans_monde = coo.CanvasToPosition(canvas.getWidth()/2,canvas.getHeight()/2, joueur.x, joueur.y,canvas, grid.cellSize);
-                        //System.out.println(coo_joueur_dans_monde.x+" "+coo_joueur_dans_monde.y+" id: "+grid.monde.getType((int)coo_joueur_dans_monde.x, (int)coo_joueur_dans_monde.y).toString());
+
 
 
                         checkBlocks(grid, deplacerJoueur, coo_joueur_dans_monde);
@@ -129,7 +129,6 @@ public class GameManager {
                                 if (mouse.mouseButton == MouseButton.PRIMARY){
                                     inv.setSlot(grid.monde.getType((int)coord_mouse.x, (int)coord_mouse.y));
                                     grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Air));
-                                    //sound.playSound("sounds/stoneBreakingplacing.mp3");
                                 }
                                 if (mouse.mouseButton == MouseButton.SECONDARY){
                                     grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Roche));
@@ -167,7 +166,7 @@ public class GameManager {
         //verification pour les blocs en DESSOUS
         deplacerJoueur.IsBlockDownEmpty = grid.monde.getType((int) coo_joueur_dans_monde.x, 1 + (int) coo_joueur_dans_monde.y).toString().equals("Air") || grid.monde.getType((int) coo_joueur_dans_monde.x, 1 + (int) coo_joueur_dans_monde.y).toString().equals("Tronc");
 
-        //vérification pour les blocs au DESSUS
+        //vérification pour les blocs au-DESSUS
         deplacerJoueur.IsBlockUpEmpty = grid.monde.getType((int) coo_joueur_dans_monde.x, (int) coo_joueur_dans_monde.y - 1).toString().equals("Air");
 
         //vérification pour les blocs à GAUCHE (bloc du bas puis du haut)

@@ -10,24 +10,24 @@ public class Joueur {
 
     //les coordonnées du joueur sont ici données en "unités" de canvas
     /**
-     * Coordonée x du joueur
+     * Coordonnées x du joueur
      */
     public double x;
     /**
-     * Coordonnée y du joueur
+     * Coordonnées y du joueur
      */
     public double y;
     /**
      * Vitesse verticale du joueur
      */
-    public double Xspeed;
+    public double xSpeed;
     /**
      * Vitesse horizontale du joueur
      */
-    public double Yspeed;
+    public double ySpeed;
     /**
      * Permet de savoir si le joueur a le corps tourné vers la droite.
-     * (JoueurView est bindé sur cette valeur pour afficher le joueur)
+     * (JoueurView est relié à cette valeur pour afficher le joueur)
      */
     public SimpleBooleanProperty isFacingRight = new SimpleBooleanProperty();
     public SimpleDoubleProperty xP = new SimpleDoubleProperty();

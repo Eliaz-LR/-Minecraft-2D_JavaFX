@@ -20,8 +20,8 @@ public class Gravity {
      *  Déplace le joueur vers le bas lorsque sa vitesse est inférieur à une certaine valeur
      */
     public void gravityPlayer(){
-        if(joueur.Yspeed < 15){
-            joueur.Yspeed +=1;
+        if(joueur.ySpeed < 15){
+            joueur.ySpeed +=1;
         }
     }
 }

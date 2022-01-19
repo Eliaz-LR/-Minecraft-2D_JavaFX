@@ -11,22 +11,22 @@ import javafx.scene.image.Image;
     Cette classe dessine aussi la lune dans le ciel la nuit.
  */
 public class Cycle {
-    //VOUS POUVEZ CHANGER CETTE VARIABLE POUR CHANGER LA DUREE D'UN CYCLE JOUR/NUIT
+
     /**
-     * Duree d'un cycle jour/nuit.
+     * Durée d'un cycle jour/nuit.
      */
-    private static int timeForCycle = 1600;
+    private static final int timeForCycle = 1600;  //VOUS POUVEZ CHANGER CETTE VARIABLE POUR CHANGER LA DUREE D'UN CYCLE JOUR/NUIT
     /**
      * "Heure" du cycle jour/nuit en nb de Cycles.
      */
     private double currentTime;
     /**
-     * Durée d'une heure avec ce systeme de temps.
+     * Durée d'une heure avec ce système de temps.
      */
     private static double heure = timeForCycle/24;
-    //heure = 1/24eme du cycle
+    //heure = 1/24ème du cycle
     //heure 0 : midi, 12 : minuit
-    private Image moon = new Image("/images/moon.png");
+    private final Image moon = new Image("/images/moon.png");
     private SimpleDoubleProperty gameTime = new SimpleDoubleProperty();
 
     public Cycle(){
@@ -35,7 +35,7 @@ public class Cycle {
 
     /**
      * Fonction qui dessine le ciel en fonction du temps passé.
-     * @param canvas
+     * @param canvas Canvas sur lequel le ciel va être dessiné.
      */
     public void changerEtat(Canvas canvas){
         currentTime = gameTime.get();
@@ -51,7 +51,7 @@ public class Cycle {
         canvas.getGraphicsContext2D().setGlobalAlpha(1);
     }
 
-    //fonction non utilisée mais grave belle, svp suprimez pas. Son but est de rendre le ciel orange pour le couché/levé de soleil.
+    //Fonction non utilisée, mais grave belle, svp ne la supprimez pas. Son but est de rendre le ciel orange pour le couché/levé de soleil.
     private double getHue(){
         Color color1 = Color.hsb(197,0.5,1);
         Color color2 = Color.hsb(35,1,1);
@@ -63,7 +63,7 @@ public class Cycle {
     }
 
     /**
-     * Fonction qui renvoie la luminosité du ciel, est aussi  utilisée pour d'autres choses.
+     * Fonction qui renvoie la luminosité du ciel, est aussi utilisée pour d'autres choses.
      * @return la luminosité du ciel entre 1 si jour et 0 si nuit.
      */
     private double getLight(){

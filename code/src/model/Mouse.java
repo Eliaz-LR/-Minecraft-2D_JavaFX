@@ -21,7 +21,7 @@ public class Mouse {
     public double ClickedY;
 
     /**
-     * Coordonnée  x  de la souris
+     * Coordonnée x de la souris
      */
     public double X;
     /**
@@ -67,13 +67,10 @@ public class Mouse {
     }
 
     /**
-     * Vérifie si le clic souris est effectué autre part que en 0x 0y
-     * @return
+     * Vérifie si le clic souris est effectué autre part qu'en 0x 0y.
+     * @return Retourne un booléen.
      */
     public Boolean isCoordSet(){
-        if (ClickedX == 0 && ClickedY == 0){
-            return false;
-        }
-        return true;
+        return ClickedX != 0 || ClickedY != 0;
     }
 }
