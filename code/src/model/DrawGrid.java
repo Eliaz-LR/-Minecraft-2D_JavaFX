@@ -47,10 +47,8 @@ public class DrawGrid {
      * Dessine sur un canvas le monde à partir d'un tableau de Type
      * @param canvas Canvas sur lequel le monde va être dessiné.
      * @param joueur
-     * @param width Largeur du canvas.
-     * @param height Hauteur du canvas.
      */
-    public void drawMonde(Canvas canvas, Joueur joueur, double width, double height) {
+    public void drawMonde(Canvas canvas, Joueur joueur) {
         Coordonnees canvasCoord = new Coordonnees();
 
         for (int i = 0; i < this.monde.xMax; i++) {

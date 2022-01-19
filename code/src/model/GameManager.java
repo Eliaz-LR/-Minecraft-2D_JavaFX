@@ -149,7 +149,7 @@ public class GameManager {
                         }
                         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
                         cycle.changerEtat(canvas);
-                        grid.drawMonde(canvas, joueur, canvas.getWidth(), canvas.getHeight());
+                        grid.drawMonde(canvas, joueur);
                         gc.drawImage(joueurView.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2 );
                         viseur.drawViseur(canvas, mouse.X, mouse.Y);
                         viseur.drawTargetedCube(mouse.X, mouse.Y, joueur.x, joueur.y, canvas, blockSize, range);

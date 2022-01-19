@@ -1,47 +1,42 @@
 package model;
 
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
-
 import java.util.ArrayList;
 
+/**
+ * Classe gérant le déplacement du Joueur.
+ */
 public class DeplacerJoueur {
+    private Scene mainJeu;
     private Joueur joueur;
     public Boolean IsBlockUpEmpty;
     public Boolean IsBlockDownEmpty;
     public Boolean IsBlockRightEmpty;
     public Boolean IsBlockLeftEmpty;
     public Gravity gravity;
-    Scene mainJeu;
+
     public ArrayList<String> input;
     public DeplacerJoueur(Joueur joueur, Scene mainJeu){
         this.joueur = joueur;
         this.mainJeu = mainJeu;
-        input = new ArrayList<String>();
+        input = new ArrayList<>();
         gravity = new Gravity(joueur);
         init();
     }
 
     private void init(){
         mainJeu.setOnKeyPressed(
-                new EventHandler<KeyEvent>() {
-                    @Override
-                    public void handle(KeyEvent event) {
-                        String code = event.getCode().toString();
-                        if (!input.contains(code)) {
-                            input.add(code);
-                        }
+                event -> {
+                    String code = event.getCode().toString();
+                    if (!input.contains(code)) {
+                        input.add(code);
                     }
                 }
         );
         mainJeu.setOnKeyReleased(
-                new EventHandler<KeyEvent>() {
-                    @Override
-                    public void handle(KeyEvent event) {
-                        String code = event.getCode().toString();
-                        input.remove(code);
-                    }
+                event -> {
+                    String code = event.getCode().toString();
+                    input.remove(code);
                 });
     }
     public void deplacerJoueur(){
