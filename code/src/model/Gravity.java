@@ -10,7 +10,7 @@ public class Gravity {
 
     /**
      *  Constructeur prenant une instance de Joueur
-     * @param joueur
+     * @param joueur Instance du joueur.
      */
     public Gravity(Joueur joueur){
         this.joueur = joueur;

@@ -3,7 +3,7 @@ package model;
 import javafx.scene.canvas.Canvas;
 
 /**
- * Classe gérant les calculs avec des coordonnéesS
+ * Classe gérant les calculs avec des coordonnées
  */
 public class Coordonnees {
     public double x;

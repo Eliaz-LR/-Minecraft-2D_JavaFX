@@ -1,15 +1,7 @@
 package model;
 
-import java.awt.*;
-
-import com.sun.webkit.dom.DocumentImpl;
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.transform.Rotate;
-
 
 /**
  * Représente le joueur

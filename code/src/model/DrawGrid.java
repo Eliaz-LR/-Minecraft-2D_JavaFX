@@ -29,10 +29,10 @@ public class DrawGrid {
 
     /**
      * **DEPRECIATED**
-     * @param canvas
-     * @param width
-     * @param height
-     * @param cellSize
+     * @param canvas canvas sur lequel la grille va être dessinée
+     * @param width  largeur du canvas
+     * @param height hauteur du canvas
+     * @param cellSize taille d'un bloc
      */
     public void drawGrid(Canvas canvas, double width, double height, int cellSize) {
         for (int i = 0; i < width; i += cellSize) {
@@ -46,7 +46,7 @@ public class DrawGrid {
     /**
      * Dessine sur un canvas le monde à partir d'un tableau de Type
      * @param canvas Canvas sur lequel le monde va être dessiné.
-     * @param joueur
+     * @param joueur Instance de Joueur.
      */
     public void drawMonde(Canvas canvas, Joueur joueur) {
         Coordonnees canvasCoord = new Coordonnees();

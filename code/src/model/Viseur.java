@@ -15,18 +15,18 @@ public class Viseur {
     private double angleDegre;
     private double x;
     private double y;
-    private static double width=35;
-    private static double height=35;
+    private static final double width=35;
+    private static final double height=35;
     private GraphicsContext gc;
     private Image img;
-    private Image imgD= new Image("/images/steve_head.png", width, height, false, true);
-    private Image imgG= new Image("/images/steve_head2.png", width, height, false, true);
+    private final Image imgD= new Image("/images/steve_head.png", width, height, false, true);
+    private final Image imgG= new Image("/images/steve_head2.png", width, height, false, true);
 
     /**
      * Dessine la tête du joueur pointant vers la souris
-     * @param canvas
-     * @param xSouris
-     * @param ySouris
+     * @param canvas Canvas sur lequel la tête va être dessinée.
+     * @param xSouris Coordonnée x de la souris.
+     * @param ySouris Coordonnée y de la souris.
      */
     public void drawViseur(Canvas canvas, double xSouris, double ySouris) {
         gc = canvas.getGraphicsContext2D();
@@ -53,9 +53,9 @@ public class Viseur {
 
     /**
      * Permet de retourner le GraphicsContext à un angle donné autour d'un point donné.
-     * @param angle
-     * @param centreX
-     * @param centreY
+     * @param angle Angle de rotation.
+     * @param centreX Coordonnée x du centre du canvas.
+     * @param centreY Coordonnée y du centre du canvas.
      */
     private void rotate(double angle, double centreX, double centreY) {
         Rotate r = new Rotate(angle, centreX, centreY);

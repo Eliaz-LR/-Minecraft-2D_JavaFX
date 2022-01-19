@@ -1,9 +1,7 @@
 package model;
 
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 
 /**
  * Classe gérant l'utilisation de la souris.
@@ -41,29 +39,21 @@ public class Mouse {
     }
 
     /**
-     * Lors d'un clique, récupère le bouton et les coordonnées du clic.
+     * Lors d'un clic, récupère le bouton et les coordonnées du clic.
      */
     private void init() {
         mainJeu.setOnMouseClicked(
-                new EventHandler<MouseEvent>()
-                {
-                    public void handle(MouseEvent e)
-                    {
-                        mouseButton = e.getButton();
-                        ClickedX = e.getX();
-                        ClickedY = e.getY();
-                    }
+                e -> {
+                    mouseButton = e.getButton();
+                    ClickedX = e.getX();
+                    ClickedY = e.getY();
                 }
         );
 
         mainJeu.setOnMouseMoved(
-                new EventHandler<MouseEvent>()
-                {
-                    public void handle(MouseEvent e)
-                    {
-                        X = e.getX();
-                        Y = e.getY();
-                    }
+                e -> {
+                    X = e.getX();
+                    Y = e.getY();
                 }
         );
     }

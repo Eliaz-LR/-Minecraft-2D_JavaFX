@@ -1,8 +1,10 @@
 package model;
-import model.Type;
-import model.EnumType;
+
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Classe représentant le monde sous forme d'un tableau bidimensionnel.
+ */
 public class Monde {
     /**
      * Tableau de Type représentant le monde
@@ -47,11 +49,11 @@ public class Monde {
             }
         }
 
-        // creation d'une couche de dirt au dessus de la roche
+        // creation d'une couche de dirt au-dessus de la roche
         int max = yMax-15;
         int min = yMax-9;
         int currentHeightGen=(min+max)/2;
-        int randomNum = ThreadLocalRandom.current().nextInt(max, min);;
+        int randomNum = ThreadLocalRandom.current().nextInt(max, min);
         for (int x = 0; x < xMax; x++) {
             if (x%7 == 0){
                 randomNum = ThreadLocalRandom.current().nextInt(max, min);
@@ -70,14 +72,14 @@ public class Monde {
         int countForTree=0;
         int surface=1;
         for (int x = 0; x < xMax; x++) {
-            // creation d'une couche de grass au dessus de la terre
+            // creation d'une couche de grass au-dessus de la terre
             for (int y = yMax-10; y > yMax-16; y--) {
                 if (type[x][y].getType() == EnumType.Terre && type[x][y-1].getType() == EnumType.Air) {
                     type[x][y-1] = new Type(EnumType.Herbe);
                     surface = y-2;
                 }
             }
-            //generation aleatoire des arbres
+            //Génération aléatoire des arbres
             if (x%10==0 && countForTree<=0){
                 countForTree = ThreadLocalRandom.current().nextInt(10, 40);
             }
@@ -94,7 +96,7 @@ public class Monde {
      * Permet de connaitre le Type d'une case du tableau type
      * @param x localisation x de la case dans le tableau
      * @param y localisation y de la case dans le tableau
-     * @return le type correspondant au coordonnée passée en paramètre.
+     * @return le type correspondant aux coordonnées passées en paramètre.
      */
     public Type getType(int x, int y){
         if (x<0 || x>=xMax || y<0 || y>=yMax){
@@ -105,16 +107,16 @@ public class Monde {
     }
 
     /**
-     * Getter du tablau type
-     * @return
+     * Getter du tableau type
+     * @return Retourne le tableau type, contenant tous les types composant le monde.
      */
     public Type[][] getTabType(){
         return type;
     }
 
     /**
-     * Permet de set le tableau de Type
-     * @param tabInput
+     * Permet de set le tableau de Type.
+     * @param tabInput tableau de Type.
      */
     public void setTabType(Type[][] tabInput){
         this.type = tabInput;
@@ -144,12 +146,12 @@ public class Monde {
     }
 
     /**
-     * Dessine arbre
+     * Dessine arbre.
      * @param x coordonnées x de la base de l'arbre
      * @param y coordonnées y de la base de l'arbre
      */
     public void drawArbre(int x, int y){
-        //place un arbre a partir de la position de son tronc
+        //place un arbre à partir de la position de son tronc
         setType(x,y,new Type(EnumType.Tronc));
         setType(x,y-1,new Type(EnumType.Tronc));
         setType(x,y-2,new Type(EnumType.Tronc));

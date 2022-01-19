@@ -1,17 +1,9 @@
 package model;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.FillTransition;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleLongProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
-import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
-
-
-import java.util.Date;
 
 
 /**

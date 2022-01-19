@@ -3,7 +3,7 @@ package model;
 import javafx.scene.canvas.Canvas;
 
 /**
- *  Inventaire du Joueur, récupére et affiche les blocs que le Joueur casse.
+ *  Inventaire du Joueur, récupère et affiche les blocs que le Joueur casse.
  */
 public class Inventory {
 
@@ -18,7 +18,7 @@ public class Inventory {
 
     /**
      * Dessine l'inventaire vide.
-     * @param canvas
+     * @param canvas Canvas sur lequel l'inventaire est dessiné.
      */
     public void drawInventory(Canvas canvas){
         //largeur inv 540px hauteur 60px
@@ -55,7 +55,7 @@ public class Inventory {
 
     /**
      * Dessine les blocs dans les slots qui correspondent
-     * @param canvas
+     * @param canvas Canvas sur lequel les blocs contenus dans l'inventaire vont être dessinés.
      */
     public void drawItems(Canvas canvas){
         int largeurCase = 0;
@@ -72,11 +72,11 @@ public class Inventory {
      */
     public String ToString(){
 
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for(int i =0;i<9;i++){
-            s = s + slots[i].type.toString();
+            s.append(slots[i].type.toString());
         }
-        return s;
+        return s.toString();
     }
 
 }

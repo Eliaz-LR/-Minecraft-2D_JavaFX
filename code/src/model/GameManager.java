@@ -2,22 +2,21 @@ package model;
 
 import controller.MenuController;
 import javafx.beans.property.SimpleLongProperty;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.input.MouseButton;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.application.Platform;
-import javafx.stage.WindowEvent;
 import view.JoueurView;
 
 import java.io.*;
 
+/**
+ * Gère le fonctionnement du jeu (Instanciation, boucle de jeu etc...).
+ */
 public class GameManager {
     /**
      * Instance de GameManager
@@ -38,7 +37,7 @@ public class GameManager {
      * Créé une instance de la classe GameManager si elle n'existe pas, sinon retourne gameManager.
      * @return Retourne l'instance gameManager
      */
-    public final static  GameManager getInstance(){
+    public static  GameManager getInstance(){
         if(GameManager.gameManager == null){
             GameManager.gameManager = new GameManager();
         }
@@ -47,7 +46,6 @@ public class GameManager {
 
     /**
      * Affiche la page d'accueil du jeu.
-     * @throws IOException
      */
     public void start() throws IOException {
         primaryStage.setTitle("Minecraft 2D");
@@ -62,13 +60,10 @@ public class GameManager {
         primaryStage.setScene(mainJeu);
 
         //Permet de fermer le programme quand on ferme la fenêtre.
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent e) {
-                stop();
-                Platform.exit();
-                System.exit(0);
-            }
+        primaryStage.setOnCloseRequest(e -> {
+            stop();
+            Platform.exit();
+            System.exit(0);
         });
 
         Canvas canvas = new Canvas(1400, 800);
@@ -92,7 +87,7 @@ public class GameManager {
         joueur.x = 1;
         joueur.y = 1;
 
-        //je sais pas pourquoi mais le joueur n'est pas par defaut au milieu vraiment, le -18 est donc necessaire (optenu en faisant des experiences)
+        //Je sais pas pourquoi mais le joueur n'est pas par défaut au milieu vraiment, le -18 est donc nécessaire (optenu en faisant des experiences)
         JoueurView joueurView = new JoueurView(joueur, widthSteve, heightSteve);
         Coordonnees spawn = coo.positionToCanvas(widthMonde/2-18, 0,joueur.x,joueur.y,canvas,blockSize);
         joueur.x = spawn.x;
@@ -113,8 +108,6 @@ public class GameManager {
         music = new Musique();
         music.playSound();
 
-
-        final long startNanoTime = System.nanoTime();
         Thread t = new Thread(() -> {
             while (true) {
                 try {
@@ -124,7 +117,7 @@ public class GameManager {
                         //System.out.println(deplacerJoueur.input); //affiche la touche dans le terminal
                         //converti et affiche les positions du joueur depuis le canvas vers le monde, les coordonées du joueur sont faites depuis son milieu.
                         Coordonnees coo_joueur_dans_monde = coo.CanvasToPosition(canvas.getWidth()/2,canvas.getHeight()/2, joueur.x, joueur.y,canvas, grid.cellSize);
-                        //System.out.println(coo_joueur_dans_monde.x+" "+coo_joueur_dans_monde.y+" id: "+grid.monde.getType((int)coo_joueur_dans_monde.x,(int)coo_joueur_dans_monde.y).toString());
+                        //System.out.println(coo_joueur_dans_monde.x+" "+coo_joueur_dans_monde.y+" id: "+grid.monde.getType((int)coo_joueur_dans_monde.x, (int)coo_joueur_dans_monde.y).toString());
 
 
                         checkBlocks(grid, deplacerJoueur, coo_joueur_dans_monde);
@@ -143,7 +136,7 @@ public class GameManager {
                                 }
                             }
                             else {
-                                System.out.println("Vous ne pouvez pas detruire un bloc à cet endroit");
+                                System.out.println("Vous ne pouvez pas détruire un bloc à cet endroit");
                             }
                             mouse.resetCoord();
                         }
@@ -172,36 +165,16 @@ public class GameManager {
 
     public void checkBlocks(DrawGrid grid, DeplacerJoueur deplacerJoueur, Coordonnees coo_joueur_dans_monde){
         //verification pour les blocs en DESSOUS
-        if (grid.monde.getType((int)coo_joueur_dans_monde.x,1+(int)coo_joueur_dans_monde.y).toString().equals("Air") || grid.monde.getType((int)coo_joueur_dans_monde.x,1+(int)coo_joueur_dans_monde.y).toString().equals("Tronc")){
-            deplacerJoueur.IsBlockDownEmpty = true;
-        }
-        else {
-            deplacerJoueur.IsBlockDownEmpty = false;
-        }
+        deplacerJoueur.IsBlockDownEmpty = grid.monde.getType((int) coo_joueur_dans_monde.x, 1 + (int) coo_joueur_dans_monde.y).toString().equals("Air") || grid.monde.getType((int) coo_joueur_dans_monde.x, 1 + (int) coo_joueur_dans_monde.y).toString().equals("Tronc");
 
         //vérification pour les blocs au DESSUS
-        if (grid.monde.getType((int)coo_joueur_dans_monde.x,(int)coo_joueur_dans_monde.y - 1).toString().equals("Air")){
-            deplacerJoueur.IsBlockUpEmpty = true;
-        }
-        else {
-            deplacerJoueur.IsBlockUpEmpty= false;
-        }
+        deplacerJoueur.IsBlockUpEmpty = grid.monde.getType((int) coo_joueur_dans_monde.x, (int) coo_joueur_dans_monde.y - 1).toString().equals("Air");
 
         //vérification pour les blocs à GAUCHE (bloc du bas puis du haut)
-        if(grid.monde.getType((int)(coo_joueur_dans_monde.x-0.5), (int)coo_joueur_dans_monde.y).toString().equals("Air") && grid.monde.getType((int)(coo_joueur_dans_monde.x-0.5), (int)coo_joueur_dans_monde.y-1).toString().equals("Air")){
-            deplacerJoueur.IsBlockLeftEmpty = true;
-        }
-        else{
-            deplacerJoueur.IsBlockLeftEmpty = false;
-        }
+        deplacerJoueur.IsBlockLeftEmpty = grid.monde.getType((int) (coo_joueur_dans_monde.x - 0.5), (int) coo_joueur_dans_monde.y).toString().equals("Air") && grid.monde.getType((int) (coo_joueur_dans_monde.x - 0.5), (int) coo_joueur_dans_monde.y - 1).toString().equals("Air");
 
-        //vérification pour les blocs a DROITE (bloc du bas puis du haut)
-        if(grid.monde.getType((int)(coo_joueur_dans_monde.x+0.5), (int)coo_joueur_dans_monde.y).toString().equals("Air") &&  grid.monde.getType((int)(coo_joueur_dans_monde.x+0.5), (int)(coo_joueur_dans_monde.y-1)).toString().equals("Air")){
-            deplacerJoueur.IsBlockRightEmpty = true;
-        }
-        else{
-            deplacerJoueur.IsBlockRightEmpty = false;
-        }
+        //vérification pour les blocs à DROITE (bloc du bas puis du haut)
+        deplacerJoueur.IsBlockRightEmpty = grid.monde.getType((int) (coo_joueur_dans_monde.x + 0.5), (int) coo_joueur_dans_monde.y).toString().equals("Air") && grid.monde.getType((int) (coo_joueur_dans_monde.x + 0.5), (int) (coo_joueur_dans_monde.y - 1)).toString().equals("Air");
     }
 
     /**

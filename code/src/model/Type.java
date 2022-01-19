@@ -1,10 +1,7 @@
 package model;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import model.EnumType;
 
+import javafx.scene.image.Image;
 import java.io.Serializable;
-import java.security.SecureRandomParameters;
 
 /**
  * Classe représentant un bloc dans le monde
@@ -36,7 +33,6 @@ public class Type implements Serializable {
 
     /**
      * En fonction de l'EnumType d'un type lui assigne une texture qui correspond.
-     * @param type
      */
     private void setTextureSwitch(EnumType type){
         switch (type){
@@ -64,8 +60,8 @@ public class Type implements Serializable {
     }
 
     /**
-     * Retourne l'EnumType d'un Type
-     * @return
+     * Getter d" EnumType
+     * @return Retourne l'EnumType de l'instance.
      */
     EnumType getType(){
         return type;
