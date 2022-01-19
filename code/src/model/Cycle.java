@@ -16,11 +16,21 @@ import java.util.Date;
 
 /**
     Classe gérant le cycle jour nuit en changeant le fond du canvas à interval régulier.
+    Cette classe dessine aussi la lune dans le ciel la nuit.
  */
 public class Cycle {
     //VOUS POUVEZ CHANGER CETTE VARIABLE POUR CHANGER LA DUREE D'UN CYCLE JOUR/NUIT
+    /**
+     * Duree d'un cycle jour/nuit.
+     */
     private static int timeForCycle = 1600;
+    /**
+     * "Heure" du cycle jour/nuit en nb de Cycles.
+     */
     private double currentTime;
+    /**
+     * Durée d'une heure avec ce systeme de temps.
+     */
     private static double heure = timeForCycle/24;
     //heure = 1/24eme du cycle
     //heure 0 : midi, 12 : minuit
@@ -31,6 +41,10 @@ public class Cycle {
         gameTime.bind(GameManager.getInstance().gameTimeP);
     }
 
+    /**
+     * Fonction qui dessine le ciel en fonction du temps passé.
+     * @param canvas
+     */
     public void changerEtat(Canvas canvas){
         currentTime = gameTime.get();
         currentTime=currentTime%timeForCycle;
@@ -45,7 +59,7 @@ public class Cycle {
         canvas.getGraphicsContext2D().setGlobalAlpha(1);
     }
 
-    //fonction non utilisée mais grave belle, svp suprimez pas
+    //fonction non utilisée mais grave belle, svp suprimez pas. Son but est de rendre le ciel orange pour le couché/levé de soleil.
     private double getHue(){
         Color color1 = Color.hsb(197,0.5,1);
         Color color2 = Color.hsb(35,1,1);
@@ -56,6 +70,10 @@ public class Cycle {
         return (new Color(resultRed, resultGreen, resultBlue, 1)).getHue();
     }
 
+    /**
+     * Fonction qui renvoie la luminosité du ciel, est aussi  utilisée pour d'autres choses.
+     * @return la luminosité du ciel entre 1 si jour et 0 si nuit.
+     */
     private double getLight(){
         //if jour
         if (currentTime<=heure*5 || currentTime>=heure*19){
