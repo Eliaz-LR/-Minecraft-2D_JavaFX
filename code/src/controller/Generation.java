@@ -13,12 +13,24 @@ public class Generation {
     @FXML private javafx.scene.control.Button genMoyen;
     @FXML private javafx.scene.control.Button genPetit;
 
+    /**
+     * Appel la méthode gen avec une petite taille de monde(50x30)
+     * @param actionEvent
+     */
     public void genPetit(ActionEvent actionEvent) {
         gen(50,30);
     }
+    /**
+     * Appel la méthode gen avec une taille moyenne de monde(90x35)
+     * @param actionEvent
+     */
     public void genMoyen(ActionEvent actionEvent) {
         gen(90,35);
     }
+    /**
+     * Appel la méthode gen avec une grande taille de monde(150x40)
+     * @param actionEvent
+     */
     public void genGrand(ActionEvent actionEvent) {
         gen(150,40);
     }
