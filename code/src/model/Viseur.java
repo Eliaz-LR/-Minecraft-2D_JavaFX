@@ -7,7 +7,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 
 
-
+/**
+ * Gère le surlignage du bloc observé et rotation de la tête
+ */
 public class Viseur {
     private double angleRad;
     private double angleDegre;
@@ -44,10 +46,27 @@ public class Viseur {
         gc.restore();
     }
 
+    /**
+     * Tourne la tête du joueur pour qu'elle suive la souris
+     * @param angle
+     * @param centreX
+     * @param centreY
+     */
     private void rotate(double angle, double centreX, double centreY) {
         Rotate r = new Rotate(angle, centreX, centreY);
         gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
     }
+
+    /**
+     * Dessine autour du bloc visé par le joueur
+     * @param xSouris Coordonnée x de la souris
+     * @param ySouris Coordonnée y de la souris
+     * @param xJoueur Coordonnée x du joueur
+     * @param yJoueur Coordonnée y du joueur
+     * @param canvas Canvas sur lequel le monde est dessiné
+     * @param cellSize Taille d'un bloc.
+     * @param range Distance maximum à laquelle un bloc est atteingnable par le joueur.
+     */
     public void drawTargetedCube(double xSouris, double ySouris, double xJoueur, double yJoueur, Canvas canvas, int cellSize, int range){
         gc.setStroke(Color.BLACK);
         gc=canvas.getGraphicsContext2D();
@@ -62,6 +81,14 @@ public class Viseur {
         }
     }
 
+    /**
+     * Calcul la distance entre deux coordonnées
+     * @param x1 X de la première coordonnée
+     * @param y1 Y de la première coordonnée
+     * @param x2 X de la seconde coordonnée
+     * @param y2 Y de la seconde coordonnée
+     * @return Distance entre les deux coordonnées.
+     */
     private double distanceBetweenCoords(double x1, double y1, double x2, double y2){
         return Math.hypot(x1-x2, y1-y2);
     }

@@ -17,6 +17,11 @@ public class Monde {
      */
     public int yMax;
 
+    /**
+     * Constructeur qui créé les couches de bloc et fait apparaître des arbres aléatoirement.
+     * @param xMax taille x maximum du monde
+     * @param yMax taille y maximum du monde
+     */
     public Monde(int xMax, int yMax){
         this.xMax = xMax;
         this.yMax = yMax;
@@ -84,6 +89,13 @@ public class Monde {
         type[0][0] = new Type(EnumType.Roche);
 
     }
+
+    /**
+     * Permet de connaitre le Type d'une case du tableau type
+     * @param x localisation x de la case dans le tableau
+     * @param y localisation y de la case dans le tableau
+     * @return le type correspondant au coordonnée passée en paramètre.
+     */
     public Type getType(int x, int y){
         if (x<0 || x>=xMax || y<0 || y>=yMax){
             System.out.println("OUT OF BOUNDS");
@@ -92,6 +104,10 @@ public class Monde {
         return type[x][y];
     }
 
+    /**
+     * Getter du tablau type
+     * @return
+     */
     public Type[][] getTabType(){
         return type;
     }

@@ -6,9 +6,21 @@ import model.EnumType;
 import java.io.Serializable;
 import java.security.SecureRandomParameters;
 
+/**
+ * Classe représentant un bloc dans le monde
+ */
 public class Type implements Serializable {
+    /**
+     * Défini le type comme étant un bloc spécifique (bloc d'air, de terre , etc...).
+     */
     public EnumType type;
+    /**
+     * Texture du type
+     */
     public Image texture;
+    /**
+     * Taille d'un type dans le monde
+     */
     private int cellSize;
 
     public Type(EnumType type){
@@ -22,6 +34,10 @@ public class Type implements Serializable {
         setTextureSwitch(type);
     }
 
+    /**
+     * En fonction de l'EnumType d'un type lui assigne une texture qui correspond.
+     * @param type
+     */
     private void setTextureSwitch(EnumType type){
         switch (type){
             case Roche:
@@ -47,6 +63,10 @@ public class Type implements Serializable {
         }
     }
 
+    /**
+     * Retourne l'EnumType d'un Type
+     * @return
+     */
     EnumType getType(){
         return type;
     }

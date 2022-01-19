@@ -14,17 +14,8 @@ import javafx.util.Duration;
 import java.util.Date;
 
 
-/*
-    Nom : Cycle
-    Description : Classe gérant le cycle jour nuit en changeant le fond du canvas à interval régulier
-
-    -Attributs-
-    isNight : boolean pour savoir si c'est le jour ou la nuit
-    Image : sprite de la Lune.
-
-    -Méthode-
-    changerEtat : en fonction de la valeur de isNight, change le fond du canvas.
-
+/**
+    Classe gérant le cycle jour nuit en changeant le fond du canvas à interval régulier.
  */
 public class Cycle {
     //VOUS POUVEZ CHANGER CETTE VARIABLE POUR CHANGER LA DUREE D'UN CYCLE JOUR/NUIT
@@ -44,7 +35,7 @@ public class Cycle {
         currentTime = gameTime.get();
         currentTime=currentTime%timeForCycle;
         canvas.getGraphicsContext2D().setFill(Color.hsb(197,0.5, getLight()));
-        System.out.println((currentTime/timeForCycle)*24);
+        //System.out.println((currentTime/timeForCycle)*24);
         drawMoon(canvas);
     }
 
