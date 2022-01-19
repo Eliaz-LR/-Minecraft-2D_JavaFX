@@ -22,15 +22,11 @@ public class GameManager {
     private static GameManager gameManager;
     public static Stage primaryStage;
     public MenuController menuController;
-    private long gameTime = 0;
     public SimpleLongProperty gameTimeP = new SimpleLongProperty();
-    public Musique music;
+    private Musique music;
     private Monde monde;
     private DrawGrid grid;
 
-    private GameManager(){
-
-    };
 
     public final static  GameManager getInstance(){
         if(GameManager.gameManager == null){
@@ -39,26 +35,19 @@ public class GameManager {
         return GameManager.gameManager;
     }
 
-
-
-
     public void start() throws IOException {
-
         primaryStage.setTitle("Minecraft 2D");
         primaryStage.setResizable(false);
         this.menuController = new MenuController(primaryStage);
         menuController.LoadFXML("/fxml/menuSceneBuild.fxml");
     }
 
-
     public void startGame(int widthMonde, int heightMonde){
         Group root = new Group();
         Scene mainJeu = new Scene(root);
-
         primaryStage.setScene(mainJeu);
 
-
-        //permet de fermer le programme quand on ferme la fenêtre
+        //Permet de fermer le programme quand on ferme la fenêtre.
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent e) {
@@ -102,12 +91,6 @@ public class GameManager {
 
         monde = new Monde(widthMonde, heightMonde);
         grid = new DrawGrid(blockSize, monde);
-//        if(new File("f.txt").isFile()){
-//            //récupérer le monde
-//            SaveMonde sm = new SaveMonde(monde);
-//            grid.monde.setTabType(sm.tabLoadMonde);
-//
-//        }
         Viseur viseur = new Viseur();
         Inventory inv = new Inventory();
         inv.fillSlots();
@@ -123,7 +106,6 @@ public class GameManager {
                 try {
                     Thread.sleep(15);
                     Platform.runLater(() -> {
-                        gameTime++;
                         gameTimeP.setValue(gameTimeP.getValue() + 1);
                         //System.out.println(deplacerJoueur.input); //affiche la touche dans le terminal
                         //converti et affiche les positions du joueur depuis le canvas vers le monde, les coordonées du joueur sont faites depuis son milieu.
@@ -136,7 +118,7 @@ public class GameManager {
                         deplacerJoueur.deplacerJoueur();
                         if (mouse.isCoordSet()){
                             Coordonnees coord_mouse = coo.CanvasToPosition(mouse.ClickedX, mouse.ClickedY, joueur.x, joueur.y,canvas, grid.cellSize);
-                            if (distanceBetweenCoords(canvas.getWidth()/2, canvas.getHeight()/2, mouse.ClickedX, mouse.ClickedY) < range){
+                            if (Coordonnees.distanceBetweenCoords(canvas.getWidth()/2, canvas.getHeight()/2, mouse.ClickedX, mouse.ClickedY) < range){
                                 if (mouse.mouseButton == MouseButton.PRIMARY){
                                     inv.setSlot(grid.monde.getType((int)coord_mouse.x, (int)coord_mouse.y));
                                     grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Air));
@@ -157,8 +139,8 @@ public class GameManager {
                         gc.drawImage(joueurView.img, canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2 );
                         viseur.drawViseur(canvas, mouse.X, mouse.Y);
                         viseur.drawTargetedCube(mouse.X, mouse.Y, joueur.x, joueur.y, canvas, blockSize, range);
-                        //hitbox
-                        //gc.strokeRect(canvas.getWidth()/2-widthSteve/2, canvas.getHeight()/2-heightSteve/2, widthSteve, heightSteve);
+
+
                         //Inventaire
                         inv.drawInventory(canvas);
                         inv.drawItems(canvas);
@@ -207,12 +189,6 @@ public class GameManager {
             deplacerJoueur.IsBlockRightEmpty = false;
         }
     }
-
-    private double distanceBetweenCoords(double x1, double y1, double x2, double y2){
-        return Math.hypot(x1-x2, y1-y2);
-    }
-
-
 
     public void stop(){
         //grid.afficherType();

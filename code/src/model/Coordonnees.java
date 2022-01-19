@@ -3,7 +3,7 @@ package model;
 import javafx.scene.canvas.Canvas;
 
 /**
- * Classe gérant le passage de coordonnée du canvas en coordonnée dans le monde et vice-versa.
+ * Classe gérant les calculs avec des coordonnéesS
  */
 public class Coordonnees {
     public double x;
@@ -49,6 +49,19 @@ public class Coordonnees {
         coo.x = (xOnCanvas + xJoueur - canvas.getWidth()/2)/cellSize;
         coo.y = (yOnCanvas + yJoueur - canvas.getHeight()/2)/cellSize;
         return coo;
+    }
+
+
+    /**
+     * Calcul la distance entre deux coordonnées
+     * @param x1 X de la première coordonnée
+     * @param y1 Y de la première coordonnée
+     * @param x2 X de la seconde coordonnée
+     * @param y2 Y de la seconde coordonnée
+     * @return Distance entre les deux coordonnées.
+     */
+    public static double distanceBetweenCoords(double x1, double y1, double x2, double y2){
+        return Math.hypot(x1-x2, y1-y2);
     }
 
 }

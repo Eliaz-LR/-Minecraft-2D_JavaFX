@@ -71,7 +71,7 @@ public class Viseur {
         gc.setStroke(Color.BLACK);
         gc=canvas.getGraphicsContext2D();
         Coordonnees coordSouris = new Coordonnees();
-        double distance = distanceBetweenCoords(xSouris,ySouris,canvas.getWidth()/2,canvas.getHeight()/2);
+        double distance = Coordonnees.distanceBetweenCoords(xSouris,ySouris,canvas.getWidth()/2,canvas.getHeight()/2);
         coordSouris = coordSouris.CanvasToPosition(xSouris,ySouris,xJoueur,yJoueur,canvas,cellSize);
         coordSouris.x = (int) coordSouris.x;
         coordSouris.y = (int) coordSouris.y;
@@ -79,17 +79,5 @@ public class Viseur {
         if (distance<range){
             gc.strokeRect(coordSouris.x,coordSouris.y,cellSize,cellSize);
         }
-    }
-
-    /**
-     * Calcul la distance entre deux coordonnées
-     * @param x1 X de la première coordonnée
-     * @param y1 Y de la première coordonnée
-     * @param x2 X de la seconde coordonnée
-     * @param y2 Y de la seconde coordonnée
-     * @return Distance entre les deux coordonnées.
-     */
-    private double distanceBetweenCoords(double x1, double y1, double x2, double y2){
-        return Math.hypot(x1-x2, y1-y2);
     }
 }
