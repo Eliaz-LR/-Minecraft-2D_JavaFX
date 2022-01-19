@@ -19,15 +19,25 @@ import view.JoueurView;
 import java.io.*;
 
 public class GameManager {
+    /**
+     * Instance de GameManager
+     */
     private static GameManager gameManager;
     public static Stage primaryStage;
     public MenuController menuController;
+    /**
+     * Compteur du temps à partir de la création d'un monde.
+     */
     public SimpleLongProperty gameTimeP = new SimpleLongProperty();
     private Musique music;
     private Monde monde;
     private DrawGrid grid;
 
 
+    /**
+     * Créé une instance de la classe GameManager si elle n'existe pas, sinon retourne gameManager.
+     * @return Retourne l'instance gameManager
+     */
     public final static  GameManager getInstance(){
         if(GameManager.gameManager == null){
             GameManager.gameManager = new GameManager();
@@ -35,6 +45,10 @@ public class GameManager {
         return GameManager.gameManager;
     }
 
+    /**
+     * Affiche la page d'accueil du jeu.
+     * @throws IOException
+     */
     public void start() throws IOException {
         primaryStage.setTitle("Minecraft 2D");
         primaryStage.setResizable(false);
@@ -190,6 +204,9 @@ public class GameManager {
         }
     }
 
+    /**
+     * Coupe la musique et enregistre le monde dans un fichier.
+     */
     public void stop(){
         //grid.afficherType();
         SaveMonde sm = new SaveMonde(monde);
