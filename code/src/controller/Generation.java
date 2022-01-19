@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import model.GameManager;
 
+/**
+ * Permet de choisir entre différentes tailles de monde.
+ */
 public class Generation {
     @FXML private javafx.scene.control.Button genGrand;
     @FXML private javafx.scene.control.Button genMoyen;
@@ -20,6 +23,11 @@ public class Generation {
         gen(150,40);
     }
 
+    /**
+     * Génère le monde en fonction de la taille passé en paramètre.
+     * @param width
+     * @param height
+     */
     private void gen(int width, int height) {
         Stage stage = (Stage) genGrand.getScene().getWindow();
         stage.close();

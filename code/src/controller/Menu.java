@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import model.GameManager;
 
 /**
- * Menu principal, permet soit d'aller sur le menu de choix de monde ou de quitter le jeu.
+ * Menu principal, permet soit d'aller sur le menu de choix de monde soit de quitter le jeu.
  */
 public class Menu {
     @FXML
