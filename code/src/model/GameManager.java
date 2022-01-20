@@ -1,6 +1,8 @@
 package model;
 
 import controller.MenuController;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -13,11 +15,12 @@ import javafx.application.Platform;
 import view.JoueurView;
 
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * Gère le fonctionnement du jeu (Instanciation, boucle de jeu, etc.).
  */
-public class GameManager {
+public class GameManager implements Observable {
     /**
      * Instance de GameManager
      */
@@ -32,6 +35,14 @@ public class GameManager {
     private Monde monde;
     private DrawGrid grid;
     private Joueur joueur;
+    /**
+     * Tableau d'observateurs.
+     */
+    private ArrayList tabObservateur;
+
+    public GameManager() {
+        tabObservateur = new ArrayList<InvalidationListener>();
+    }
 
 
     /**
@@ -105,6 +116,8 @@ public class GameManager {
         Inventory inv = new Inventory();
         inv.fillSlots();
         Cycle cycle = new Cycle();
+        Time time = new Time();
+        addListener(time);
         gameTimeP.setValue(0);
         music = new Musique();
         music.playSound();
@@ -115,12 +128,9 @@ public class GameManager {
                     Thread.sleep(15);
                     Platform.runLater(() -> {
                         gameTimeP.setValue(gameTimeP.getValue() + 1);
-
+                        notifier();
                         //converti et affiche les positions du joueur depuis le canvas vers le monde, les coordonnées du joueur sont faites depuis son milieu.
                         Coordonnees coo_joueur_dans_monde = coo.CanvasToPosition(canvas.getWidth()/2,canvas.getHeight()/2, joueur.x, joueur.y,canvas, grid.cellSize);
-
-
-
                         Collisionneur.checkBlocks(grid, deplacerJoueur, coo_joueur_dans_monde);
                         joueurView.playerDirection();
                         deplacerJoueur.deplacerJoueur();
@@ -148,6 +158,8 @@ public class GameManager {
                         viseur.drawTargetedCube(mouse.X, mouse.Y, joueur.x, joueur.y, canvas, blockSize, range);
 
 
+                        //Time
+                        time.displayTime(canvas);
                         //Inventaire
                         inv.drawInventory(canvas);
                         inv.drawItems(canvas);
@@ -171,6 +183,30 @@ public class GameManager {
         //grid.afficherType();
         SaveMonde sm = new SaveMonde(monde);
         sm.sauverMonde();
+
         music.stopSound();
+    }
+
+    public long getTime(){
+
+        return this.gameTimeP.getValue();
+    }
+
+
+    public void notifier(){
+        for(int i = 0;i<tabObservateur.size(); i++){
+            InvalidationListener invalidationListeners = (InvalidationListener) tabObservateur.get(i);
+            invalidationListeners.invalidated(this);
+        }
+    }
+
+    @Override
+    public void addListener(InvalidationListener invalidationListener) {
+        tabObservateur.add(invalidationListener);
+    }
+
+    @Override
+    public void removeListener(InvalidationListener invalidationListener) {
+        tabObservateur.remove(invalidationListener);
     }
 }
