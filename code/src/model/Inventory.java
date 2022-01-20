@@ -1,6 +1,7 @@
 package model;
 
 import javafx.scene.canvas.Canvas;
+import javafx.scene.paint.Color;
 
 /**
  *  Inventaire du Joueur, récupère et affiche les blocs que le Joueur casse.
@@ -24,6 +25,7 @@ public class Inventory {
         //largeur inv 540px hauteur 60px
         int largeurCase = 0;
         for (int i =0;i<9;i++){
+            canvas.getGraphicsContext2D().setStroke(Color.BLACK);
             canvas.getGraphicsContext2D().strokeRect(canvas.getWidth()/2-270 + largeurCase, canvas.getHeight()- 100, 60,60);
             largeurCase= largeurCase + 60;
         }
