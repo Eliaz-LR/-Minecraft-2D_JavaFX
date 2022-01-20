@@ -18,8 +18,13 @@ public class Musique {
      * Instancie le thread, récupère la musique et la lance
      */
     public void playSound(){
-        String musicFile = "code/resources/music/sweden.wav";     // For example
-        Media sound = new Media(new File(musicFile).toURI().toString());
+        String musicFile = "/music/sweden.wav";     // For example
+        Media sound = null;
+        try {
+            sound = new Media(getClass().getResource(musicFile).toURI().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
             musiqueThread  = new Thread(() -> {
                 while (true){
