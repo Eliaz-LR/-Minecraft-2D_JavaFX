@@ -1,16 +1,13 @@
 package launch;
 
 import javafx.application.Application;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import model.*;
-
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Objects;
 
+/**
+ * Lance le jeu
+ */
 public class Launch extends Application {
 
     public static void main(String[] args) {
@@ -18,6 +15,9 @@ public class Launch extends Application {
         GameManager.getInstance();
     }
 
+    /**
+     * Affiche la page d'accueil du jeu.
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
         GameManager.getInstance();
