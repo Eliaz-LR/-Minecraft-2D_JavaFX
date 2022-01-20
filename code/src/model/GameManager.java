@@ -121,7 +121,7 @@ public class GameManager {
 
 
 
-                        checkBlocks(grid, deplacerJoueur, coo_joueur_dans_monde);
+                        Collisionneur.checkBlocks(grid, deplacerJoueur, coo_joueur_dans_monde);
                         joueurView.playerDirection();
                         deplacerJoueur.deplacerJoueur();
                         if (mouse.isCoordSet()){
@@ -163,19 +163,6 @@ public class GameManager {
         primaryStage.show();
     }
 
-    public void checkBlocks(DrawGrid grid, DeplacerJoueur deplacerJoueur, Coordonnees coo_joueur_dans_monde){
-        //verification pour les blocs en DESSOUS
-        deplacerJoueur.IsBlockDownEmpty = grid.monde.getType((int) coo_joueur_dans_monde.x, 1 + (int) coo_joueur_dans_monde.y).toString().equals("Air") || grid.monde.getType((int) coo_joueur_dans_monde.x, 1 + (int) coo_joueur_dans_monde.y).toString().equals("Tronc");
-
-        //vérification pour les blocs au-DESSUS
-        deplacerJoueur.IsBlockUpEmpty = grid.monde.getType((int) coo_joueur_dans_monde.x, (int) coo_joueur_dans_monde.y - 1).toString().equals("Air");
-
-        //vérification pour les blocs à GAUCHE (bloc du bas puis du haut)
-        deplacerJoueur.IsBlockLeftEmpty = grid.monde.getType((int) (coo_joueur_dans_monde.x - 0.5), (int) coo_joueur_dans_monde.y).toString().equals("Air") && grid.monde.getType((int) (coo_joueur_dans_monde.x - 0.5), (int) coo_joueur_dans_monde.y - 1).toString().equals("Air");
-
-        //vérification pour les blocs à DROITE (bloc du bas puis du haut)
-        deplacerJoueur.IsBlockRightEmpty = grid.monde.getType((int) (coo_joueur_dans_monde.x + 0.5), (int) coo_joueur_dans_monde.y).toString().equals("Air") && grid.monde.getType((int) (coo_joueur_dans_monde.x + 0.5), (int) (coo_joueur_dans_monde.y - 1)).toString().equals("Air");
-    }
 
     /**
      * Coupe la musique et enregistre le monde dans un fichier.
