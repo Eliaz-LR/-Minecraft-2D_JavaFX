@@ -31,6 +31,7 @@ public class GameManager {
     private Musique music;
     private Monde monde;
     private DrawGrid grid;
+    private Joueur joueur;
 
 
     /**
@@ -83,7 +84,7 @@ public class GameManager {
 
 
 
-        Joueur joueur = new Joueur();
+        joueur = new Joueur();
         joueur.x = 1;
         joueur.y = 1;
 
@@ -124,8 +125,8 @@ public class GameManager {
                         joueurView.playerDirection();
                         deplacerJoueur.deplacerJoueur();
                         if (mouse.isCoordSet()){
-                            Coordonnees coord_mouse = coo.CanvasToPosition(mouse.ClickedX, mouse.ClickedY, joueur.x, joueur.y,canvas, grid.cellSize);
-                            if (Coordonnees.distanceBetweenCoords(canvas.getWidth()/2, canvas.getHeight()/2, mouse.ClickedX, mouse.ClickedY) < range){
+                            Coordonnees coord_mouse = coo.CanvasToPosition(mouse.clickedX, mouse.clickedY, joueur.x, joueur.y,canvas, grid.cellSize);
+                            if (Coordonnees.distanceBetweenCoords(canvas.getWidth()/2, canvas.getHeight()/2, mouse.clickedX, mouse.clickedY) < range){
                                 if (mouse.mouseButton == MouseButton.PRIMARY){
                                     inv.setSlot(grid.monde.getType((int)coord_mouse.x, (int)coord_mouse.y));
                                     grid.monde.setType((int)coord_mouse.x,(int)coord_mouse.y,new Type(EnumType.Air));
@@ -183,6 +184,6 @@ public class GameManager {
         //grid.afficherType();
         SaveMonde sm = new SaveMonde(monde);
         sm.sauverMonde();
-        music.stopMusique();
+        music.stopSound();
     }
 }

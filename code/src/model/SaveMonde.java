@@ -12,12 +12,18 @@ public class SaveMonde {
     /**
      * Tableau d'int correspondant au tableau de Type actuel (a chaque EnumType particulier est associé une valeur précise)
      */
-    int[][] tabSaveMonde;
+    private int[][] tabSaveMonde;
+
+    /**
+     * Tableau remplit des valeurs récupérées depuis un fichier contenant les informations du dernier monde lancé.
+     */
+    private int[][] mondeRecup;
     /**
      * Tableau servant à charger les données récupérées
      */
-    Type[][] tabLoadMonde;
-    int[][] mondeRecup;
+    private Type[][] tabLoadMonde;
+
+
     /**
      * Monde à enregistrer
      */
@@ -102,7 +108,7 @@ public class SaveMonde {
     private Type[][] intToType(){
         int hauteur = mondeRecup.length;
         int largeur = mondeRecup[0].length;
-
+        tabLoadMonde = new Type[largeur][hauteur]; //vérifier si hauteur et largeur ne sont pas inversée
         try{
             for(int i = 0; i < largeur; i++){
                 for(int y = 0; y < hauteur; y++){
@@ -144,7 +150,7 @@ public class SaveMonde {
      * Permet de récupérer le dernier monde enregistré.
      * @return retourne un tableau de Type représentant le monde.
      */
-    public Type[][] getMondeSauver(){
+    public Type[][] getMondeSaved(){
         recupMonde();
         return intToType();
     }

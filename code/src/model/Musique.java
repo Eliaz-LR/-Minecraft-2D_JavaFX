@@ -32,7 +32,7 @@ public class Musique {
     /**
      * Stop le thread de la musique
      */
-    public void stopMusique(){
+    public void stopSound(){
         musiqueThread.stop();
     }
 }

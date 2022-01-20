@@ -7,7 +7,7 @@ import javafx.scene.canvas.Canvas;
  */
 public class Inventory {
 
-    public Type[] slots;
+    private Type[] slots;
 
     /**
      * Instancie un inventaire en mettant le nombre de slots à 9
@@ -70,7 +70,7 @@ public class Inventory {
      * Retourne le contenu de l'inventaire sous forme de texte
      * @return contenu de slots
      */
-    public String ToString(){
+    public String toString(){
 
         StringBuilder s = new StringBuilder();
         for(int i =0;i<9;i++){

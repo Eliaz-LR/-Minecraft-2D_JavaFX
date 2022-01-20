@@ -45,6 +45,10 @@ public class Cycle {
         drawMoon(canvas);
     }
 
+    /**
+     * Dessine la lune dans le ciel pendant la nuit.
+     * @param canvas Canvas sur lequel la lune sera dessinée.
+     */
     private void drawMoon(Canvas canvas){
         canvas.getGraphicsContext2D().setGlobalAlpha(1-getLight());
         canvas.getGraphicsContext2D().drawImage(moon,canvas.getWidth()/2-300, canvas.getHeight()/2-300, 80, 75);

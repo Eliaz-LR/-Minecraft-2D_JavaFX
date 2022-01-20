@@ -6,7 +6,7 @@ package model;
  *
  */
 public class Gravity {
-    public Joueur joueur;
+    private final Joueur joueur;
 
     /**
      *  Constructeur prenant une instance de Joueur

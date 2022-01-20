@@ -10,15 +10,15 @@ public class Mouse {
     /**
      * Scène du jeu actuel
      */
-    Scene mainJeu;
+    private Scene mainJeu;
     /**
      * Coordonnée x d'un clic souris
      */
-    public double ClickedX;
+    public double clickedX;
     /**
      * Coordonnée y d'un clic souris
      */
-    public double ClickedY;
+    public double clickedY;
 
     /**
      * Coordonnée x de la souris
@@ -45,8 +45,8 @@ public class Mouse {
         mainJeu.setOnMouseClicked(
                 e -> {
                     mouseButton = e.getButton();
-                    ClickedX = e.getX();
-                    ClickedY = e.getY();
+                    clickedX = e.getX();
+                    clickedY = e.getY();
                 }
         );
 
@@ -62,8 +62,8 @@ public class Mouse {
      * Reset des coordonnées du clic de souris à 0
      */
     public void resetCoord(){
-        ClickedX = 0;
-        ClickedY = 0;
+        clickedX = 0;
+        clickedY = 0;
     }
 
     /**
@@ -71,6 +71,6 @@ public class Mouse {
      * @return Retourne un booléen.
      */
     public Boolean isCoordSet(){
-        return ClickedX != 0 || ClickedY != 0;
+        return clickedX != 0 || clickedY != 0;
     }
 }
