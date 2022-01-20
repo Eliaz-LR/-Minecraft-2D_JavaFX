@@ -7,8 +7,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
+<?import java.net.URL?>
 <AnchorPane fx:controller="controller.Menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style=" -fx-background-image: url(code/resources/images/mc_bg.png);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <stylesheets>
+      <URL value="@css.css" />
+   </stylesheets>
    <children>
       <ImageView fitHeight="800.0" fitWidth="1200.0" layoutX="1.0">
          <image>
@@ -25,7 +28,7 @@
             <Font name="Carlito" size="30.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="400.0" layoutY="64.0" prefHeight="101.0" prefWidth="400.0" style="-fx-border-radius: 100px;" text="MINECRAFT" textFill="WHITE" textOverrun="CLIP">
+      <Label styleClass="center" ellipsisString="" layoutX="400.0" layoutY="64.0" prefHeight="101.0" prefWidth="400.0" style="-fx-border-radius: 100px;" text="MINECRAFT" textFill="WHITE" textOverrun="CLIP">
          <font>
             <Font name="Carlito Bold" size="63.0" />
          </font>
@@ -33,7 +36,7 @@
             <DropShadow height="50.65" radius="24.085" spread="0.17" width="47.69" />
          </effect>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="439.0" layoutY="128.0" prefHeight="61.0" prefWidth="322.0" style="-fx-border-radius: 100px;" text="2D" textFill="WHITE" textOverrun="CLIP">
+      <Label styleClass="center" ellipsisString="" layoutX="439.0" layoutY="128.0" prefHeight="61.0" prefWidth="322.0" style="-fx-border-radius: 100px;" text="2D" textFill="WHITE" textOverrun="CLIP">
          <font>
             <Font name="Carlito Bold" size="64.0" />
          </font>
