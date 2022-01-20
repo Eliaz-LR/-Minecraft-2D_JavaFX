@@ -180,10 +180,8 @@ public class GameManager implements Observable {
      * Coupe la musique et enregistre le monde dans un fichier.
      */
     public void stop(){
-        //grid.afficherType();
         SaveMonde sm = new SaveMonde(monde);
         sm.sauverMonde();
-
         music.stopSound();
     }
 
