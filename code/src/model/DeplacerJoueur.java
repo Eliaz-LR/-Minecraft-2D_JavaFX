@@ -37,7 +37,11 @@ public class DeplacerJoueur {
      */
     public ArrayList<String> input;
 
-
+    /**
+     * Constructeur de la classe DeplacerJoueur.
+     * @param joueur
+     * @param mainJeu
+     */
     public DeplacerJoueur(Joueur joueur, Scene mainJeu){
         this.joueur = joueur;
         this.mainJeu = mainJeu;
@@ -47,7 +51,7 @@ public class DeplacerJoueur {
     }
 
     /**
-     * Réupère la dernière touche appuyée et l'ajoute au tableau input.
+     * Récupère la dernière touche appuyée et l'ajoute au tableau input.
      */
     private void init(){
         mainJeu.setOnKeyPressed(
